@@ -280,8 +280,6 @@
                               <?php }else{
                                  echo "<h3  style='text-align:center;margin-top:40px;color:#5f7410;'> NO RESULT FOUND </h3>" ;
                                  }
-                                 
-                                 
                                  ?>
                            </div>
                         </div>

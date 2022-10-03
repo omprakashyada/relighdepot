@@ -398,7 +398,7 @@ $(document).ready(function(){
  
  <script>
 $( document ).ready(function() {
-   return false;
+    return false;
       var  selectArray=[];
       var  arrayResponse=[];
       var  dataArray=[];

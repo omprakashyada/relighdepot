@@ -44,7 +44,6 @@
 
 
 <?php 
-     
    if(isset($_REQUEST['Submit'])){
    $username=$_POST['username'];
    $password=$_POST['password'];
