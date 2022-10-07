@@ -188,7 +188,6 @@ die("Connection failed: " . $conn->connect_error);
                               $exist=mysqli_num_rows($res1);
                               // echo $exist;
                               if(!($exist>=1)){
-
                               $insert="INSERT INTO template_details(`Template_id`,`Template_name`,`Csv_columns`,`Column_count`) Values('$id','$temp_name','$column','$column_count')";
                               $ins=mysqli_query($conn,$insert);
                               }     

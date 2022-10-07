@@ -1,7 +1,6 @@
 <?php    
 session_start(); 
 include_once (__DIR__.'/authentication.php');
-
 ?>
 <?php
 $servername = "localhost";
@@ -374,115 +373,88 @@ die("Connection failed: " . $conn->connect_error);
 <?php 
 
  if(isset($_REQUEST['export'])){
-  $result=array();
-  $data=json_decode($_POST['show_data']);
-
-  $data_attr=json_decode($_POST['show1_data']);
-  $key=$_POST['key_data'];
-   $column=json_decode($_POST['data']);
-   $attribute=json_decode($_POST['data_col']);
-   $prefix=$_POST['prefix'];
-   array_push($result, $data);
-    print_r($result);
-    $new_array=array();
-    $path = __DIR__."/csvupload"; 
-    $latest_ctime = 0;
-    $latest_filename = '';  
-    $d = dir($path);
-    while (false !== ($entry = $d->read())) {
-    $filepath = "{$path}/{$entry}";
-    //could do also other checks than just checking whether the entry is a file
-    if (is_file($filepath) && filectime($filepath) > $latest_ctime) {
-    $latest_ctime = filectime($filepath);
-    $latest_filename = $entry;
-    //  echo $latest_filename;
-    }
-    }
-    if (($handle = fopen(__DIR__.'/csvupload/'."$latest_filename", "r")) !== FALSE){      
-               $headers = fgetcsv($handle, 1000, ",");
-               global $headers;
-               $i=0;
-               $records = array(); 
-               $records_updated = array(); 
-               $url_result=array();
-               $sorteddata[]=array();
-               while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {      
-
-                  $count = count($data);
-                  global $count;
-                  for($x=0;$x<$count;$x++){
-
-                  $records[$headers[$x]][$i] = $data[$x];
-                  }
-               
-                  $i++;
-
-                        
-                  $csv[]=$data;  
-                  
+      $result=array();
+      $data=json_decode($_POST['show_data']);
+      $data_attr=json_decode($_POST['show1_data']);
+      $key=$_POST['key_data'];
+      $column=json_decode($_POST['data']);
+      $attribute=json_decode($_POST['data_col']);
+      $prefix=$_POST['prefix'];
+      array_push($result, $data);
+      $new_array=array();
+      $path = __DIR__."/csvupload"; 
+      $latest_ctime = 0;
+      $latest_filename = '';  
+      $d = dir($path);
+      while (false !== ($entry = $d->read())) {
+         $filepath = "{$path}/{$entry}";
+         //could do also other checks than just checking whether the entry is a file
+         if (is_file($filepath) && filectime($filepath) > $latest_ctime) {
+         $latest_ctime = filectime($filepath);
+         $latest_filename = $entry;
+         //  echo $latest_filename;
          }
-
+      }
+      if (($handle = fopen(__DIR__.'/csvupload/'."$latest_filename", "r")) !== FALSE){      
+         $headers = fgetcsv($handle, 1000, ",");
+         global $headers;
+         $i=0;
+         $records = array(); 
+         $records_updated = array(); 
+         $url_result=array();
+         $sorteddata[]=array();
+         while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {    
+            $count = count($data);
+            global $count;
+            for($x=0;$x<$count;$x++){
+               $records[$headers[$x]][$i] = $data[$x];
+            }
+            $i++;    
+            $csv[]=$data;   
+         }
          foreach ($column as  $value_rec) {
             $records_updated[$value_rec] = $records[$value_rec];
          }
-         
-   
-            $key=array_keys($csv);
-
-            $data_arr_sorted = array();
-
-            foreach ($records_updated as $records_update_data) {
-               
-               for($x=0;$x<count($records_update_data);$x++){
-                     $data_arr_sorted[$x][] = $records_update_data[$x];
+         $key=array_keys($csv);
+         $data_arr_sorted = array();
+         foreach ($records_updated as $records_update_data) {
+            for($x=0;$x<count($records_update_data);$x++){
+               $data_arr_sorted[$x][] = $records_update_data[$x];
+            } 
+         }
+         $sorteddata=array($attribute);             
+         foreach ($data_arr_sorted as $key => $value) {
+            for($j=0;$j<count($value);$j++) {
+               for($i=0;$i<count($result[0]);$i++){
+                  $check=$result[0][$i];
+                  if($check == $value[$j]){
+                     array_push($new_array, $value);
+                  } 
                } 
             }
-          $sorteddata=array($attribute);             
-          foreach ($data_arr_sorted as $key => $value) {
+         }
 
-              for($j=0;$j<count($value);$j++){
-
-                for($i=0;$i<count($result[0]);$i++){
-                
-                $check=$result[0][$i];
-
-                if($check == $value[$j]){
-                           
-                     array_push($new_array, $value);
-                  }
-
-                
-              }
-
-            
-          }
+         foreach ($new_array as $key => $valuesku) {
+               if (strpos( $value[0], $prefix) === 0) {
+                  $sorteddata[]=$valuesku;
+               } else {
+                  $pos = 0;
+                  $prefix_sku=$prefix.$valuesku[0];
+                  array_shift($valuesku);  
+                  $result = array_merge(array_slice($valuesku, 0, $pos), array($prefix_sku), array_slice($valuesku, $pos));
+                  $sorteddata[]=$result;
+               } 
+         }    
       }
+         $file='export'.date("d-m-y").'.csv';
+         $dir=__DIR__."/downloads/".$file;
+         $f = fopen($dir, "w");
+         foreach ($sorteddata as $line) {
+            fputcsv($f, $line);
+         }
 
-     foreach ($new_array as $key => $valuesku) {
-        if (strpos( $value[0], $prefix) === 0) {
-          $sorteddata[]=$valuesku;
-        }
-        else{
-           $pos = 0;
-        $prefix_sku=$prefix.$valuesku[0];
-        array_shift($valuesku);  
-        $result = array_merge(array_slice($valuesku, 0, $pos), array($prefix_sku), array_slice($valuesku, $pos));
-       $sorteddata[]=$result;
-        }
-       
-     }
- 
-             
- }
-$file='export'.date("d-m-y").'.csv';
-$dir=__DIR__."/downloads/".$file;
-$f = fopen($dir, "w");
-foreach ($sorteddata as $line) {
-    fputcsv($f, $line);
-}
-
-echo "<script>window.open('http://localhost/relight/export.php','_self');</script>";
-}
+      echo "<script>window.open('http://localhost/relight/export.php','_self');</script>";
+   }
 
 ?>
 
