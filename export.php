@@ -421,18 +421,18 @@ $url=$_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'];
                               </div>
                         </div>
                         <?php
-                            $filtedCsvData=[];
-                           $simpleData=[];
-                           $productFileData=[];
-                           $ProductCsvData=[];
-                          $simpleProductFile =fopen(__DIR__."/newcsvfile/simple_product.csv","r");
-                          $productFile = fopen(__DIR__."/csvupload/Product.csv","r");
-                          $x=0;
+                        $filtedCsvData=[];
+                        $simpleData=[];
+                        $productFileData=[];
+                        $ProductCsvData=[];
+                        $simpleProductFile =fopen(__DIR__."/newcsvfile/simple_product.csv","r");
+                        $productFile = fopen(__DIR__."/csvupload/Product.csv","r");
+                        $x=0;
                           while (($simpleProductData = fgetcsv($simpleProductFile)) !== FALSE) {
-                           if($x != 0){
+                           if($x != 0) {
                                  $skuData= $simpleProductData[2];
                                  $productId =$simpleProductData[1];
-                                 if ($productId == 0) {
+                                 if($productId == 0) {
                                  } else {
                                     $simpleData[] = array($skuData);
                                  }
@@ -441,8 +441,10 @@ $url=$_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'];
                           }
                           fclose($simpleProductFile);
                           while (($productData = fgetcsv($productFile,10000,',')) !== FALSE) {
+                                
                               $productFileData[] = $productData;
                               }
+                              
                               $skucount= count($simpleData);
                               for ($i=0;$i< $skucount;$i++) {
                                $j = 0;
@@ -454,16 +456,17 @@ $url=$_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'];
                                }
                                
                               }
-                             
+                               
                               fclose($productFile);
-                              @$filtedCsvData[]=array('Product Name','Product Code/SKU','Bin Picking Number', 'Brand Name','Product Description','Price','Cost Price','Retail Price','Sale Price','Fixed Shipping Cost','Free Shipping','Product Warranty','Product Weight','Category','Product Image URL - 1',
-                               'Product Image ID - 1','Product Image File - 1','Product Image Description - 1','Product Image Is Thumbnail - 1','Product Image Sort - 1','Page Title','Meta Keywords','Meta Description','Product Custom Fields');
 
-                              $fileName='Product-'.date("d-m-y").'-'.time().'.csv';
+                               @$filtedCsvData[]=array('ProductId','Product Name','Product Code/SKU','Bin Picking Number','Brand Name','Product Description','Price','Cost Price','Retail Price','Sale Price','Fixed Shipping Cost','Free Shipping','Product Warranty','Product Weight','Product Width','Product Height','Product Depth','Allow Purchases', 'Product Visible','Product Availability','Track Inventory','Current Stock Level','Low Stock Level','Category', 'Product Image URL - 1','Product Image URL - 2','Product Image URL - 3','Product Image URL - 4','Product Image URL - 5','Product Image URL - 6','Product Image URL - 7','Product Image URL - 8','Product Image URL - 9','Product Image URL - 10','Product Image URL - 11','Product Image URL - 12','Product Image URL - 13','Page Title','Meta Keywords','Meta Description','Product Condition','Product UPC/EAN','GPS Global Trade Item Number','Product Custom Fields','Minimum Purchase Quantity','Maximum Purchase Quantity','Shipping Groups');
+
+                              $fileName='All-Product-'.date("d-m-y").'-'.time().'.csv';
                               $downloadDir= __DIR__."/newcsvfile/".$fileName;
                               $fileOpen = fopen($downloadDir, "w");
                               $datacount=count($ProductCsvData)-1;
                               foreach ($ProductCsvData as $csvData) {
+                                 $productid=$csvData[1]; 
                                  $productName=$csvData[2];
                                  $productSkuCode=$csvData[4];
                                  $binPicking=$csvData[5];
@@ -477,20 +480,40 @@ $url=$_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'];
                                  $freeShipping=$csvData[15];
                                  $productWarrenty=$csvData[16];
                                  $productWeight=$csvData[17];
+                                 $productWidth=$csvData[18];
+                                 $productHeight=$csvData[19];
+                                 $productDept=$csvData[20];
+                                 $allowpurchase=$csvData[21];
+                                 $productVisible=$csvData[22];
+                                 $productAvilty=$csvData[23];
+                                 $trackInventary = $csvData[24];
+                                 $currentStockLevel=$csvData[27];
+                                 $lowStockLevel = $csvData[28];
                                  $category=$csvData[29];
-                                 $productImageURL=$csvData[30];
-                                 $productImageId=$csvData[31];
-                                 $productImageFile=$csvData[32];
-                                 $productImageDesc=$csvData[33];
-                                 $productImageThumb=$csvData[34];
-                                 $productImageSort=$csvData[35];
+                                 $productImageUrl_1= $csvData[30];
+                                 $productImageUrl_2= $csvData[36];
+                                 $productImageUrl_3= $csvData[42];
+                                 $productImageUrl_4= $csvData[48];
+                                 $productImageUrl_5= $csvData[54];
+                                 $productImageUrl_6= $csvData[60];
+                                 $productImageUrl_7= $csvData[66];
+                                 $productImageUrl_8= $csvData[72];
+                                 $productImageUrl_9= $csvData[78];
+                                 $productImageUrl_10= $csvData[84];
+                                 $productImageUrl_11= $csvData[90];
+                                 $productImageUrl_12=$csvData[96];
+                                 $productImageUrl_13=$csvData[102];
                                  $pageTitle=$csvData[109];
                                  $metaKeywords=$csvData[110];
                                  $metaDescription=$csvData[111];
+                                 $productCondition=$csvData[112];
+                                 $productUpc = $csvData[116];
+                                 $tradItemNumber=$csvData[120];
                                  $productCustomFeild=$csvData[132];
-                                 @$filtedCsvData[]=array($productName,$productSkuCode,$binPicking,$brandName,$productDescription,$price,$costPrice,$$retailPrice,$salePrice, $FixedShippingCost,$freeShipping,$productWarrenty, $productWeight,$category,$productImageURL,$productImageId,$productImageFile,$productImageDesc ,$productImageThumb,
-                                 $productImageSort, $pageTitle , $metaKeywords ,$metaDescription,   $productCustomFeild);
-                                 
+                                 $minPurchaseQuantity= $csvData[133];
+                                 $maxPurchaseQuantity= $csvData[134];
+                                 $sippingGroup=$csvData[135];
+                                 @$filtedCsvData[]=array($productid,$productName,$productSkuCode,$binPicking,$brandName,$productDescription,$price,$costPrice,$retailPrice,$salePrice,$FixedShippingCost,$freeShipping,$productWarrenty,$productWeight,$productWidth,$productHeight,$productDept,$allowpurchase,$productVisible,$productAvilty,$trackInventary,$currentStockLevel,$lowStockLevel,$category,$productImageUrl_1,$productImageUrl_2,$productImageUrl_3,$productImageUrl_4,$productImageUrl_5,$productImageUrl_6,$productImageUrl_7,$productImageUrl_8,$productImageUrl_9,$productImageUrl_10,$productImageUrl_11,$productImageUrl_12,$productImageUrl_13,$pageTitle,$metaKeywords,$metaDescription,$productCondition,$productUpc, $tradItemNumber,$productCustomFeild,$minPurchaseQuantity,$maxPurchaseQuantity,$sippingGroup);
                               }
                               foreach($filtedCsvData as $newData){
                                  fputcsv($fileOpen,$newData);
@@ -507,7 +530,7 @@ $url=$_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'];
                                  <div class="pdf-icon"> 
                                     <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                                  </div>
-                                 <a href="http://localhost/relight/newcsv/<?php echo $nfile; ?>" id="download" class="export-btn">
+                                 <a href="http://localhost/relight/newcsv/<?php echo $fileName; ?>" id="download" class="export-btn">
                                     <i class="fa fa-download" aria-hidden="true"></i>
                                    Simple Product CSV
                                  </a>
