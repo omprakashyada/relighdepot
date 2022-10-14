@@ -72,9 +72,7 @@ foreach($newArrayData as $customValue) {
             $newArray[$key2] =str_replace('"', "",$value2);
         }
     }
-    
    array_push($allData,$newArray);
- 
 }
 
 

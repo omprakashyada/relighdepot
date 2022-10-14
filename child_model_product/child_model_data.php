@@ -2,8 +2,11 @@
 $productFileData=[];
 $modelData=[];
 $childSkuData=[];
-$allProductFile=fopen("C:/xampp/htdocs/relight/csvupload/Product.csv","r");
-$modelProductFile=fopen("C:/xampp/htdocs/relight/modelproduct/model_product.csv","r");
+$allData=[];
+$withSkuData=[];
+$allProductFile=fopen("C:/xampp/htdocs/relight/csvupload/product.csv","r");
+
+$modelProductFile=fopen("C:/xampp/htdocs/relight/modelproduct/model.csv","r");
 while (($productData = fgetcsv($allProductFile)) !== FALSE) {
   $productFileData[] = $productData; 
 }
@@ -20,7 +23,6 @@ while (($modelProductData = fgetcsv($modelProductFile)) !== FALSE) {
               'child_sku' => $childSku,
               'parent_sku' =>$parentSku
             );
-          
         }
     }
      $x++;
@@ -31,7 +33,6 @@ foreach($modelData as $childData) {
     $arr=array(
       "data" => explode(",",$childData['child_sku'])
     );
-    
     $additional = array($a++ =>$childData['parent_sku']);
     $arr['data'] = array_merge($arr['data'], $additional);
     array_push($childSkuData,$arr);
@@ -61,39 +62,49 @@ foreach($newArrayData as $skuData) {
   }
 }
 
-$result=[];
+
 $newArraypushed=[];
 foreach($productCsvData as $arrayData) { 
-   $colorTemp= (explode('=',$arrayData['product'][2]));
-  if($colorTemp[0] == '') {
-  } else {
-    $result[$colorTemp[0]] = $colorTemp[1];
-    $array=array(
-      'parent_sku' =>$arrayData['parent_sku'],
-      'child_sku' => $arrayData['child_sku'],
-      'price' => $arrayData['product'][10],
-      'cost_price' =>$arrayData['product'][11],
-      'retail_price' =>$arrayData['product'][12],
-      'sale_price' => $arrayData['product'][13],
-  );
-  $mergeData=array_merge($result,$array);
-  array_push($newArraypushed,$mergeData);
+  $newFetureData=(explode(',[S]',$arrayData['product'][2]));
+  $filterData=(array_filter($newFetureData));
+  $countArray=count($filterData);
+  if($countArray > 0){
+    $dataArray=[];
+    for($i=0;$i < $countArray; $i++){
+      $dataArray[]=(explode('=',$filterData[$i]));
+    }
+    $result=[];
+    for($k=0;$k< count($dataArray);$k++) {
+      $result = array_map(function($v){
+          return [str_replace('[S]',"",@$v[0]) => @$v[1]];
+      }, $dataArray);
+    }
+    $newArray = array();
+    foreach($result as $key => $value) {
+      foreach($value as $key2 => $value2) {
+          $newArray[$key2] =$value2;
+          $additional = array(
+            'parent_sku' => $arrayData['parent_sku'],
+            'child_sku' => $arrayData['child_sku'],
+          );
+          array_push($withSkuData,array_merge($additional,$newArray)); 
+        }
+      }
+    }   
   }
-}
-$fileName='child-model-Product'.date("d-m-y").'-'.time().'.csv';
-$downloadDir= __DIR__."/csvFile/".$fileName;
-$fileOpen = fopen($downloadDir, "w");
 
-$csvFileHeader[]=array('sku','parent',"Color_Temperature",'price','cost_price','Retail_price','sale_price');
-foreach($newArraypushed as $csvData) {
- $color=(preg_split("/\,/", $csvData['[S]Color Temperature (CCT)'])); 
-  $colorArray=($color[0]);
-  $colorNewArray=preg_split("/\s+/",$colorArray);
- $csvFileHeader[]=array($csvData['child_sku'],$csvData['parent_sku'],$colorNewArray[0],$csvData['price'],$csvData['cost_price'],$csvData['retail_price'],$csvData['sale_price']);
-}
+  $finishoption=[];
+  foreach($withSkuData as $newallData) {
+   if(@$newallData['Finish Options']) {
+      $finishoption[]=$newallData;
+   }
+  }
+  echo "<pre>";
+  print_r();
+  
 
-foreach($csvFileHeader as $csvValue) {
-  fputcsv($fileOpen,$csvValue);
-}
+ 
+
+
 
 ?>
