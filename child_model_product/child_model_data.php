@@ -5,8 +5,7 @@ $childSkuData=[];
 $allData=[];
 $withSkuData=[];
 $allProductFile=fopen("C:/xampp/htdocs/relight/csvupload/product.csv","r");
-
-$modelProductFile=fopen("C:/xampp/htdocs/relight/modelproduct/model.csv","r");
+$modelProductFile=fopen("C:/xampp/htdocs/relight/modelproduct/model_product.csv","r");
 while (($productData = fgetcsv($allProductFile)) !== FALSE) {
   $productFileData[] = $productData; 
 }
@@ -44,20 +43,19 @@ foreach($childSkuData as $childArrayData) {
   }
 }
 $productCsvData=[];
-
 foreach($newArrayData as $skuData) {
   $parentData=array_pop($skuData);
   for($k=0;$k < count($skuData);$k++) {
     $j=0;
     foreach($productFileData as $product) {
-     if($skuData[$k]==$product[4]) {
-       $productCsvData[]=array(
-        'product' => $product,
-        'parent_sku' => $parentData,
-        'child_sku' => $skuData[$k], 
-       );
-     }
-     $j++;
+      if($skuData[$k]==$product[4]) {
+        $productCsvData[]=array(
+          'product' => $product,
+          'parent_sku' => $parentData,
+          'child_sku' => $skuData[$k], 
+        );
+      }
+      $j++;
     }
   }
 }
@@ -93,14 +91,34 @@ foreach($productCsvData as $arrayData) {
     }   
   }
 
-  $finishoption=[];
-  foreach($withSkuData as $newallData) {
-   if(@$newallData['Finish Options']) {
-      $finishoption[]=$newallData;
-   }
+  $color=[];
+  $finish=[];
+foreach($withSkuData as $WithskuValue) {
+  if(count($WithskuValue) == 3) {
+    if($WithskuValue['Color Temperature (CCT)']) {
+      array_push($color,$WithskuValue);
+    } else if($WithskuValue['Finish Options']) {
+      array_push($finish,$WithskuValue);
+    }
   }
-  echo "<pre>";
-  print_r();
+}
+
+echo "<pre>";
+print_r($color);
+echo "====================================";
+echo "<br>";
+print_r(count($WithskuValue));
+echo "<br>";
+echo "<pre>";
+print_r($finish);
+echo "====================================";
+echo "<br>";
+print_r(count($finish));
+ 
+
+
+
+
   
 
  
