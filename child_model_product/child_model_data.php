@@ -4,7 +4,7 @@ $modelData=[];
 $childSkuData=[];
 $allData=[];
 $withSkuData=[];
-$allProductFile=fopen("C:/xampp/htdocs/relight/csvupload/product.csv","r");
+$allProductFile=fopen("C:/xampp/htdocs/relight/csvupload/Product.csv","r");
 $modelProductFile=fopen("C:/xampp/htdocs/relight/modelproduct/model_product.csv","r");
 while (($productData = fgetcsv($allProductFile)) !== FALSE) {
   $productFileData[] = $productData; 
@@ -63,65 +63,220 @@ foreach($newArrayData as $skuData) {
 
 $newArraypushed=[];
 foreach($productCsvData as $arrayData) { 
-  $newFetureData=(explode(',[S]',$arrayData['product'][2]));
-  $filterData=(array_filter($newFetureData));
-  $countArray=count($filterData);
-  if($countArray > 0){
-    $dataArray=[];
-    for($i=0;$i < $countArray; $i++){
-      $dataArray[]=(explode('=',$filterData[$i]));
-    }
-    $result=[];
-    for($k=0;$k< count($dataArray);$k++) {
-      $result = array_map(function($v){
-          return [str_replace('[S]',"",@$v[0]) => @$v[1]];
-      }, $dataArray);
-    }
-    $newArray = array();
-    foreach($result as $key => $value) {
-      foreach($value as $key2 => $value2) {
-          $newArray[$key2] =$value2;
-          $additional = array(
-            'parent_sku' => $arrayData['parent_sku'],
-            'child_sku' => $arrayData['child_sku'],
-          );
-          array_push($withSkuData,array_merge($additional,$newArray)); 
+   $newFetureData=(explode(',[S]',$arrayData['product'][2]));
+   $filterData=(array_filter($newFetureData));
+    $countArray=count($filterData);
+      if($countArray > 0){
+        $dataArray=[];
+        for($i=0;$i < $countArray; $i++){
+          $dataArray[]=(explode('=',$filterData[$i]));
         }
-      }
-    }   
-  }
+       
+        $result=[];
+        for($k=0;$k< count($dataArray);$k++) {
+          $result = array_map(function($v){
+              return [str_replace('[S]',"",@$v[0]) => @$v[1]];
+          }, $dataArray);
+         }
+        $newArray = array();
+         $result_array = array();
+         foreach ($result as $val) {
+           foreach ($val as $key => $inner_val) {
+             $result_array[$key] = $inner_val;
+           }
 
+         }
+         $additional = array(
+          'parent_sku' => $arrayData['parent_sku'],
+          'child_sku' => $arrayData['child_sku'],
+        );
+        array_push($withSkuData,array_merge($additional,$result_array));
+        }   
+    }
+  
+  $colorTemp=[];
+  $finishOptionData=[];
+  $lightSource=[];
+  $selectLightSource=[];
+  $endCapFinish=[];
+  $wattegeOption=[];
+  $mettalTrimFinsh=[];
+  $wattegeandlumen=[];
+  $mainCable=[];
+  $lenAndWattege=[];
+  $channels=[];
+  $outPutWattege=[];
+  $outPutWattAndVolt=[];
+  $fixtureOption=[];
+  $VoltageOption=[];
+  $LamppAndBallest=[];
+  $LampBallest=[];
+  $lumnens=[];
+  $rtColorOption=[];
+  $fixtureSize=[];
+  $fixtureWatt=[];
+  $housingColor=[];
+  $letterColor=[];
+  $wattegeUpDown=[];
+  $emergencyBattery=[];
+  $sizeWattege=[];
+  $accessoriesOption=[];
+  $roundTrim=[];
+  $squreTrim=[];
+  $Voltage=[];
+  $rbColorTemp=[];
+  $rbFixture=[];
+  $fixtureConfig=[];
+  $controlOption=[];
+  $wattAndLumen=[];
+  $reflactore=[];
   $color=[];
-  $finish=[];
 foreach($withSkuData as $WithskuValue) {
   if(count($WithskuValue) == 3) {
-    if($WithskuValue['Color Temperature (CCT)']) {
+    if(@$WithskuValue['Color Temperature (CCT)']) {
+      array_push($colorTemp,$WithskuValue);
+    } else if(@$WithskuValue['Finish Options']) {
+      array_push($finishOptionData,$WithskuValue);
+    }else if(@$WithskuValue['Light Source Options']) {
+      array_push($lightSource,$WithskuValue);
+    }else if (@$WithskuValue['Select Light Source']) {
+      array_push($selectLightSource,$WithskuValue);
+     }else if (@$WithskuValue['End Cap Finish Options']) {
+      array_push($endCapFinish,$WithskuValue);
+    } else if (@$WithskuValue['Wattage Options']) {
+      array_push($wattegeOption,$WithskuValue);
+    }  else if (@$WithskuValue['Metal Trim Ring Finish']) {
+      array_push($mettalTrimFinsh,$WithskuValue);
+    }else if (@$WithskuValue['Wattage & Lumen Options']) {
+      array_push($wattegeandlumen,$WithskuValue);
+    } else if (@$WithskuValue['Main Cable Length']) {
+      array_push($mainCable,$WithskuValue);
+    }else if (@$WithskuValue['Length & Wattage Options']){
+      array_push($lenAndWattege,$WithskuValue);
+    } else if (@$WithskuValue['Number of Channels & Wattage Options']){
+      array_push($channels,$WithskuValue);
+    }else if(@$WithskuValue['Output Wattage Options']) {
+      array_push($outPutWattege,$WithskuValue);
+    }else if(@$WithskuValue['Output Wattage & Voltage Options']) {
+      array_push($outPutWattAndVolt,$WithskuValue);
+    } else if(@$WithskuValue['Fixture Options']) {
+      array_push($fixtureOption,$WithskuValue);
+    }else if(@$WithskuValue['Voltage Options']) {
+      array_push($VoltageOption,$WithskuValue);
+    } else if (@$WithskuValue['Lamp & Ballast Options']){
+      array_push($LamppAndBallest,$WithskuValue);
+    }else if(@$WithskuValue['Lamp / Ballast Options']) {
+      array_push($LampBallest,$WithskuValue);
+    } else if(@$WithskuValue['Lumens']) {
+      array_push($lumnens,$WithskuValue);
+    }
+    
+    else if(@$WithskuValue['[RT]Color Temperature (CCT)']) {
+      array_push($rtColorOption,$WithskuValue);
+    } else if (@$WithskuValue['Fixture Size Options']) {
+      array_push($fixtureSize,$WithskuValue);
+    } else if (@$WithskuValue['Fixture Wattage Options']) {
+      array_push($fixtureWatt,$WithskuValue);
+    } else if (@$WithskuValue['Housing Color Options']) {
+      array_push($housingColor,$WithskuValue);
+    } 
+    
+    else if(@$WithskuValue['Letter Color Options']) {
+      array_push($letterColor,$WithskuValue);
+    } else if (@$WithskuValue['Wattage Up / Down Options']){
+      array_push($wattegeUpDown,$WithskuValue);
+    }else if (@$WithskuValue['[RB]Emergency Battery Option']){
+      array_push($emergencyBattery,$WithskuValue);
+    } else if(@$WithskuValue['Size & Wattage Options']){
+      array_push($sizeWattege,$WithskuValue);
+    }
+    
+    else if(@$WithskuValue['Accessories Options']){
+      array_push($accessoriesOption,$WithskuValue);
+    }else if(@$WithskuValue['Round Trim Ring Options']){
+      array_push($roundTrim,$WithskuValue);
+    }else if(@$WithskuValue['Square Trim Ring Options']){
+      array_push($squreTrim,$WithskuValue);
+    }else if(@$WithskuValue['Voltage']){
+      array_push($Voltage,$WithskuValue);
+    } else if(@$WithskuValue['[RB]Color Temperature (CCT)']){
+      array_push($rbColorTemp,$WithskuValue);
+    } else if(@$WithskuValue['[RB]Fixture Options']){
+      array_push($rbFixture,$WithskuValue);
+    }else if(@$WithskuValue['Fixture Configuration']){
+      array_push($fixtureConfig,$WithskuValue);
+    }else if(@$WithskuValue['Control Options']){
+      array_push($controlOption,$WithskuValue);
+    }else if(@$WithskuValue['Wattage / Lumen Options']){
+      array_push($wattAndLumen,$WithskuValue);
+    }else if(@$WithskuValue['Reflectors']){
+      array_push($reflactore,$WithskuValue);
+    }else if(@$WithskuValue['Color']){
       array_push($color,$WithskuValue);
-    } else if($WithskuValue['Finish Options']) {
-      array_push($finish,$WithskuValue);
     }
   }
+
 }
 
-echo "<pre>";
-print_r($color);
-echo "====================================";
-echo "<br>";
-print_r(count($WithskuValue));
-echo "<br>";
-echo "<pre>";
-print_r($finish);
-echo "====================================";
-echo "<br>";
-print_r(count($finish));
+@$metal[]=array('parent_sku','child_sku','Letter Color Options');
+$fileName='Letter-Color-Options'.date("d-m-y").'.csv';
+$downloadDir=__DIR__."/single-varient-file/".$fileName;
+$fileOpen = fopen($downloadDir, "w");
+foreach ($letterColor as $csvData) {
+    @$parent=$csvData['parent_sku'];
+    @$child=$csvData['child_sku'];
+    @$color=$csvData['Letter Color Options'];
+    @$metal[]=array(@$parent,@$child,@$color);
+}
+foreach($metal as $newData){
+  fputcsv($fileOpen,$newData);
+}
  
 
+@$light[]=array('parent_sku','child_sku','Wattage Up / Down Options');
+$fileName='Wattage-Up-Down-Options'.date("d-m-y").'.csv';
+$downloadDir=__DIR__."/single-varient-file/".$fileName;
+$fileOpen = fopen($downloadDir, "w");
+foreach ($wattegeUpDown as $csvData) {
+    @$parent=$csvData['parent_sku'];
+    @$child=$csvData['child_sku'];
+    @$color=$csvData['Wattage Up / Down Options'];
+    @$light[]=array(@$parent,@$child,@$color);
+}
+foreach($light as $newData){
+  fputcsv($fileOpen,$newData);
+}
+
+@$selectdata[]=array('parent_sku','child_sku','[RB]Emergency Battery Option');
+$fileName='Emergency-Battery-Option'.date("d-m-y").'.csv';
+$downloadDir=__DIR__."/single-varient-file/".$fileName;
+$fileOpen = fopen($downloadDir, "w");
+foreach ($emergencyBattery as $csvData) {
+    @$parent=$csvData['parent_sku'];
+    @$child=$csvData['child_sku'];
+    @$color=$csvData['[RB]Emergency Battery Option'];
+    @$selectdata[]=array(@$parent,@$child,@$color);
+}
+foreach($selectdata as $newData){
+  fputcsv($fileOpen,$newData);
+}
 
 
+@$select[]=array('parent_sku','child_sku','Size & Wattage Options');
+$fileName='Size-Wattage-Options'.date("d-m-y").'.csv';
+$downloadDir=__DIR__."/single-varient-file/".$fileName;
+$fileOpen = fopen($downloadDir, "w");
+foreach ($sizeWattege as $csvData) {
+    @$parent=$csvData['parent_sku'];
+    @$child=$csvData['child_sku'];
+    @$color=$csvData['Size & Wattage Options'];
+    @$select[]=array(@$parent,@$child,@$color);
+}
+foreach($select as $newData){
+  fputcsv($fileOpen,$newData);
+}
 
-  
 
- 
 
 
 
