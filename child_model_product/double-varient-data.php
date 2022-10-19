@@ -93,144 +93,269 @@ foreach($productCsvData as $arrayData) {
         array_push($withSkuData,array_merge($additional,$result_array));
         }   
     }
-    foreach($withSkuData as $WithskuValue) {
-         if(count($WithskuValue) == 4) {
-            echo "<pre>";
-            print_r($WithskuValue);
-        }
+    $factoryAndWiring=[];
+    $endCapLampType=[];
+    $selectRefAndVoltage=[];
+    $wattegLumenAndColor=[];
+    $wattegeAndColor=[];
+    $outputAndFixtuerWatt=[];
+    $endCapAndColor=[];
+    $ledModulAndColor=[];
+    $FixtureAndColor=[];
+    $reflectoreAndMetalFinish=[];
+    $WattegeAndVoltageFinish=[];
+    $finishAndVoltageFinish=[];
+    $finishAndFacePlate=[];
+    $VoltageAndColor=[];
+    $BeamAngleAndColor=[];
+    $finishOptionAndColor=[];
+    $LumenPackOptionAndColor=[];
+    $sizeWattegeOptionAndColor=[];
+    $WattegeAndLumenOptionAndColor=[];
+    $FixtureWattegeOptionAndColor=[];
+    $finishOptionAndTrim=[];
+    $selectFinishAndColor=[];
+    $finishAndHeight=[];
+    $lengthAndAndColor=[];
+    $outputWattegeAndVoltage=[];
+    $rtColorAndBeam=[];
+    $wiringAndColor=[];
+    $lamppAndColor=[];
+    $fixtureSizeAndColor=[];
+    $WattAndLumenAndColor=[];
+    $WattAndOpticeAndColor=[];
+    $VoltageAndLens=[];
+    $mountingAndColor=[];
+    $lengthAndFinish=[];
+    $trimplateAndColor=[];
+    $occupancyAndColor=[];
+    $WattAndTrimOption=[];
+    $sizeWattLumenAndColor=[];
+    $accessoriesAndColor=[];
+    $lenseAndColor=[];
+    $lightDistriAndColor=[];
+    $mountingAndControl=[];
+    $wattegeAndLumenColor=[];
+    $trimShapColor=[];
+    $finishAndLetter=[];
+    $colorAndcolorTemp=[];
+    $emergencyBatteryAndFinish=[];
+    $reflectoreOpAndcolorTemp=[];
+    $rbColorAndColorTemp=[];
+    $frostedAndColorTemp=[];
+    $trimRingAndColorTemp=[];
+    $letterAndColorTemp=[];
+    $reflactoreAndColorTemp=[];
+    $reflactoreFinishAndColorTemp=[];
+foreach($withSkuData as $WithskuValue) {
+  if(count($WithskuValue) == 4) {
+    if(@$WithskuValue['Factory Installed Lamps'] && @$WithskuValue['Wiring Options'] ) {
+      array_push($factoryAndWiring,$WithskuValue);
+    }else if(@$WithskuValue['End Cap Finish Options'] && @$WithskuValue['Lamp Type Options']) {
+      array_push($endCapLampType,$WithskuValue);
+    }else if(@$WithskuValue['Select Reflector'] && @$WithskuValue['Voltage Options']) {
+      array_push($selectRefAndVoltage,$WithskuValue);
+    }else if(@$WithskuValue['Wattage & Lumen Options'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($wattegLumenAndColor,$WithskuValue);
+    }else if(@$WithskuValue['Output Voltage'] && @$WithskuValue['Fixture Wattage']) {
+      array_push($outputAndFixtuerWatt,$WithskuValue);
+    }else if(@$WithskuValue['Wattage Options'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($wattegeAndColor,$WithskuValue);
+    }else if(@$WithskuValue['End Cap Finish Options'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($endCapAndColor,$WithskuValue);
+    }else if(@$WithskuValue['LED Module & Wattage Options'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($ledModulAndColor,$WithskuValue);
+    }else if(@$WithskuValue['Fixture Options'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($FixtureAndColor,$WithskuValue);
+    }else if(@$WithskuValue['Reflector Finish'] && @$WithskuValue['Metal Trim Ring Finish']) {
+      array_push($reflectoreAndMetalFinish,$WithskuValue);
+    }else if(@$WithskuValue['Wattage Options'] && @$WithskuValue['Voltage Options']) {
+      array_push($WattegeAndVoltageFinish,$WithskuValue);
+    }else if(@$WithskuValue['Finish Options'] && @$WithskuValue['Voltage Options']) {
+      array_push($finishAndVoltageFinish,$WithskuValue);
+    }else if(@$WithskuValue['Finish Options'] && @$WithskuValue['Face Plate Style']) {
+      array_push($finishAndFacePlate,$WithskuValue);
+    } else if(@$WithskuValue['Voltage Options'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($VoltageAndColor,$WithskuValue);
+    }else if(@$WithskuValue['Beam Angle Options'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($BeamAngleAndColor,$WithskuValue);
+    }else if(@$WithskuValue['Finish Options'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($finishOptionAndColor,$WithskuValue);
+    }else if(@$WithskuValue['Lumen Package Options'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($LumenPackOptionAndColor,$WithskuValue);
+    }else if(@$WithskuValue['Size & Wattage Options'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($sizeWattegeOptionAndColor,$WithskuValue);
+    }else if(@$WithskuValue['Wattage & Lumen Options'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($WattegeAndLumenOptionAndColor,$WithskuValue);
+    }else if(@$WithskuValue['Fixture Wattage Options'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($FixtureWattegeOptionAndColor,$WithskuValue);
+    }else if(@$WithskuValue['Finish Options'] && @$WithskuValue['Trim Ring Finish']) {
+      array_push($finishOptionAndTrim,$WithskuValue);
+    }else if(@$WithskuValue['Select Finish (Reflectors & Baffles)'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($selectFinishAndColor,$WithskuValue);
+    }else if(@$WithskuValue['Finish Options'] && @$WithskuValue['Height Options']) {
+      array_push($finishAndHeight,$WithskuValue);
+    }else if(@$WithskuValue['Length & Wattage Options'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($lengthAndAndColor,$WithskuValue);
+    }else if(@$WithskuValue['Output Wattage Options'] && @$WithskuValue['Output Voltage Options']) {
+      array_push($outputWattegeAndVoltage,$WithskuValue);
+    }else if(@$WithskuValue['Beam Angle Options'] && @$WithskuValue['[RT]Color Temperature (CCT)']) {
+      array_push($rtColorAndBeam,$WithskuValue);
+    } else if(@$WithskuValue['Wiring Options'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($wiringAndColor,$WithskuValue);
+    } else if(@$WithskuValue['Lamp/Wattage Options'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($lamppAndColor,$WithskuValue);
+    } else if(@$WithskuValue['Fixture Size'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($fixtureSizeAndColor,$WithskuValue);
+    }else if(@$WithskuValue['Wattage & Lumen'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($WattAndLumenAndColor,$WithskuValue);
+    }else if(@$WithskuValue['Wattage & Optics Options'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($WattAndOpticeAndColor,$WithskuValue);
+    }else if(@$WithskuValue['Voltage Options'] && @$WithskuValue['Lens Options']) {
+      array_push($VoltageAndLens,$WithskuValue);
+    }else if(@$WithskuValue['Mounting Options'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($mountingAndColor,$WithskuValue);
+    }else if(@$WithskuValue['Length Options'] && @$WithskuValue['Finish Options']) {
+      array_push($lengthAndFinish,$WithskuValue);
+    }else if(@$WithskuValue['Trimplate Options'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($trimplateAndColor,$WithskuValue);
+    }else if(@$WithskuValue['Occupancy Sensor'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($occupancyAndColor,$WithskuValue);
+    }else if(@$WithskuValue['Wattage Options'] && @$WithskuValue['Trim Options']) {
+      array_push($WattAndTrimOption,$WithskuValue);
+    }else if(@$WithskuValue['Size\, Wattage & Lumen Options'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($sizeWattLumenAndColor,$WithskuValue);
+    }else if(@$WithskuValue['Accessories Options'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($accessoriesAndColor,$WithskuValue);
+    }else if(@$WithskuValue['Lens Options'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($lenseAndColor,$WithskuValue);
+    }else if(@$WithskuValue['Light Distribution Options'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($lightDistriAndColor,$WithskuValue);
+    }else if(@$WithskuValue['Mounting Options'] && @$WithskuValue['Control Options']) {
+      array_push($mountingAndControl,$WithskuValue);
+    }else if(@$WithskuValue['Wattage / Lumen Options'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($wattegeAndLumenColor,$WithskuValue);
+    }else if(@$WithskuValue['Trim Shape Options'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($trimShapColor,$WithskuValue);
+    }else if(@$WithskuValue['Finish Options'] && @$WithskuValue['Letter Color Options']) {
+      array_push($finishAndLetter,$WithskuValue);
+    }else if(@$WithskuValue['Finish Options'] && @$WithskuValue['Emergency Battery Options']) {
+      array_push($emergencyBatteryAndFinish,$WithskuValue);
+    }else if(@$WithskuValue['Color'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($colorAndcolorTemp,$WithskuValue);
+    }else if(@$WithskuValue['Reflector Options'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($reflectoreOpAndcolorTemp,$WithskuValue);
+    }else if(@$WithskuValue['Color'] && @$WithskuValue['[RB]Color Temperature']) {
+      array_push($rbColorAndColorTemp,$WithskuValue);
+    }else if(@$WithskuValue['Frosted Lens'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($frostedAndColorTemp,$WithskuValue);
+    }else if(@$WithskuValue['Trim Ring Options'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($trimRingAndColorTemp,$WithskuValue);
+    }else if(@$WithskuValue['Letter Color Options'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($letterAndColorTemp,$WithskuValue);
+    }else if(@$WithskuValue['Reflector'] && @$WithskuValue['Color Temperature (CCT)']) {
+      array_push($reflactoreAndColorTemp,$WithskuValue);
     }
-//   $colorTemp=[];
-//   $finishOptionData=[];
-//   $lightSource=[];
-//   $selectLightSource=[];
-//   $endCapFinish=[];
-//   $wattegeOption=[];
-//   $mettalTrimFinsh=[];
-//   $wattegeandlumen=[];
-//   $mainCable=[];
-//   $lenAndWattege=[];
-//   $channels=[];
-//   $outPutWattege=[];
-//   $outPutWattAndVolt=[];
-//   $fixtureOption=[];
-//   $VoltageOption=[];
-//   $LamppAndBallest=[];
-//   $LampBallest=[];
-//   $lumnens=[];
-//   $rtColorOption=[];
-//   $fixtureSize=[];
-//   $fixtureWatt=[];
-//   $housingColor=[];
-//   $letterColor=[];
-//   $wattegeUpDown=[];
-//   $emergencyBattery=[];
-//   $sizeWattege=[];
-//   $accessoriesOption=[];
-//   $roundTrim=[];
-//   $squreTrim=[];
-//   $Voltage=[];
-//   $rbColorTemp=[];
-//   $rbFixture=[];
-//   $fixtureConfig=[];
-//   $controlOption=[];
-//   $wattAndLumen=[];
-//   $reflactore=[];
-//   $color=[];
-// foreach($withSkuData as $WithskuValue) {
-//   if(count($WithskuValue) == 3) {
-//     if(@$WithskuValue['Color Temperature (CCT)']) {
-//       array_push($colorTemp,$WithskuValue);
-//     } else if(@$WithskuValue['Finish Options']) {
-//       array_push($finishOptionData,$WithskuValue);
-//     }else if(@$withSkuData['Light Source Options']) {
-//       array_push($lightSource,$WithskuValue);
-//     }else if (@$withSkuData['Select Light Source']){
-//       array_push($selectLightSource,$WithskuValue);
-//     } else if (@$withSkuData['End Cap Finish Options']) {
-//       array_push($endCapFinish,$WithskuValue);
-//     } else if (@$WithskuValue['Wattage Options']) {
-//       array_push($wattegeOption,$WithskuValue);
-//     }else if (@$WithskuValue['Metal Trim Ring Finish']) {
-//       array_push($mettalTrimFinsh,$WithskuValue);
-//     }else if (@$WithskuValue['Wattage & Lumen Options']) {
-//       array_push($wattegeandlumen,$WithskuValue);
-//     } else if (@$WithskuValue['Main Cable Length']) {
-//       array_push($mainCable,$WithskuValue);
-//     }else if (@$WithskuValue['Length & Wattage Options']){
-//       array_push($lenAndWattege,$WithskuValue);
-//     }else if (@$WithskuValue['Number of Channels & Wattage Options']){
-//       array_push($channels,$WithskuValue);
-//     }else if(@$WithskuValue['Output Wattage Options']) {
-//       array_push($outPutWattege,$WithskuValue);
-//     }else if(@$WithskuValue['Output Wattage & Voltage Options']) {
-//       array_push($outPutWattAndVolt,$WithskuValue);
-//     } else if (@$WithskuValue['Fixture Option']) {
-//       array_push($fixtureOption,$WithskuValue);
-//     }else if(@$WithskuValue['Voltage Options']) {
-//       array_push($VoltageOption,$WithskuValue);
-//     } else if (@$WithskuValue['Lamp & Ballast Options']){
-//       array_push($LamppAndBallest,$WithskuValue);
-//     }else if(@$WithskuValue['Lamp / Ballast Options']) {
-//       array_push($LampBallest,$WithskuValue);
-//     } else if(@$WithskuValue['Lumens']) {
-//       array_push($lumnens,$WithskuValue);
-//     }else if(@$WithskuValue['[RT]Color Temperature (CCT)']) {
-//       array_push($rtColorOption,$WithskuValue);
-//     } else if (@$WithskuValue['Fixture Size Options']) {
-//       array_push($fixtureSize,$WithskuValue);
-//     } else if (@$WithskuValue['Fixture Wattage Options']) {
-//       array_push($fixtureWatt,$WithskuValue);
-//     } else if (@$WithskuValue['Housing Color Options']) {
-//       array_push($housingColor,$WithskuValue);
-//     } else if(@$WithskuValue['Letter Color Options']) {
-//       array_push($letterColor,$WithskuValue);
-//     } else if (@$WithskuValue['Wattage Up / Down Options']){
-//       array_push($wattegeUpDown,$WithskuValue);
-//     }else if (@$WithskuValue['[RB]Emergency Battery Option']){
-//       array_push($emergencyBattery,$WithskuValue);
-//     } else if(@$WithskuValue['Size & Wattage Options']){
-//       array_push($sizeWattege,$WithskuValue);
-//     }else if(@$WithskuValue['Accessories Options']){
-//       array_push($accessoriesOption,$WithskuValue);
-//     }else if(@$WithskuValue['Round Trim Ring Options']){
-//       array_push($roundTrim,$WithskuValue);
-//     }else if(@$WithskuValue['Square Trim Ring Options']){
-//       array_push($squreTrim,$WithskuValue);
-//     }else if(@$WithskuValue['Voltage']){
-//       array_push($Voltage,$WithskuValue);
-//     } else if(@$WithskuValue['[RB]Color Temperature (CCT)']){
-//       array_push($rbColorTemp,$WithskuValue);
-//     } else if(@$WithskuValue['[RB]Fixture Options']){
-//       array_push($rbFixture,$WithskuValue);
-//     }else if(@$WithskuValue['Fixture Configuration']){
-//       array_push($fixtureConfig,$WithskuValue);
-//     }else if(@$WithskuValue['Control Options']){
-//       array_push($controlOption,$WithskuValue);
-//     }else if(@$WithskuValue['Wattage / Lumen Options']){
-//       array_push($wattAndLumen,$WithskuValue);
-//     }else if(@$WithskuValue['Reflectors']){
-//       array_push($reflactore,$WithskuValue);
-//     }else if(@$WithskuValue['Color']){
-//       array_push($color,$WithskuValue);
-//     }
-//   }
+    
+    else if(@$WithskuValue['Reflector Finish'] && @$WithskuValue['Color Temperature']) {
+      array_push($reflactoreFinishAndColorTemp,$WithskuValue);
+    }
+  }
+}
 
-// }
-// @$filtedCsvData[]=array('parent_sku','child_sku','Light Source Options');
-// $fileName='light-source'.date("d-m-y").'.csv';
-// $downloadDir=__DIR__."/single-varient-file/".$fileName;
+
+// @$header[]=array('parent_sku','child_sku','Color','[RB]Color Temperature');
+// $fileName='rbcolor-and-color'.date("d-m-y").'.csv';
+// $downloadDir=__DIR__."/double-varient/".$fileName;
 // $fileOpen = fopen($downloadDir, "w");
-// foreach ($lightSource as $csvData) {
+// foreach ($rbColorAndColorTemp as $csvData) {
 //     @$parent=$csvData['parent_sku'];
 //     @$child=$csvData['child_sku'];
-//     @$color=$csvData['Light Source Options'];
-//     @$filtedCsvData[]=array(@$parent,@$child,@$color);
+//     @$fct=$csvData['Color'];
+//     @$color=$csvData['[RB]Color Temperature'];
+//     @$header[]=array(@$parent,@$child,@$fct,@$color);
 // }
-// foreach($filtedCsvData as $newData){
+// foreach($header as $newData){
 //   fputcsv($fileOpen,$newData);
 // }
 
-  
+// @$new[]=array('parent_sku','child_sku','Frosted Lens','Color Temperature (CCT)');
+// $fileName='finishAndLetter'.date("d-m-y").'.csv';
+// $downloadDir=__DIR__."/double-varient/".$fileName;
+// $fileOpen = fopen($downloadDir, "w");
+// foreach ($frostedAndColorTemp as $csvData) {
+//     @$parent=$csvData['parent_sku'];
+//     @$child=$csvData['child_sku'];
+//     @$color=$csvData['Frosted Lens'];
+//     @$socond=$csvData['Color Temperature (CCT)'];
+//     @$new[]=array(@$parent,@$child,@$color,@$socond);
+// }
+// foreach($new as $newData){
+//   fputcsv($fileOpen,$newData);
+// }
+
+// @$newthree[]=array('parent_sku','child_sku','Trim Ring Options','Color Temperature (CCT)');
+// $fileName='trim-ring-and-colorTemp'.date("d-m-y").'.csv';
+// $downloadDir=__DIR__."/double-varient/".$fileName;
+// $fileOpen = fopen($downloadDir, "w");
+// foreach ($trimRingAndColorTemp as $csvData) {
+//     @$parent=$csvData['parent_sku'];
+//     @$child=$csvData['child_sku'];
+//     @$color=$csvData['Trim Ring Options'];
+//     @$socond=$csvData['Color Temperature (CCT)'];
+//     @$newthree[]=array(@$parent,@$child,@$color,@$socond);
+// }
+// foreach($newthree as $newData){
+//   fputcsv($fileOpen,$newData);
+// }
+
+
+// @$newtwo[]=array('parent_sku','child_sku','Letter Color Options','Color Temperature (CCT)');
+// $fileName='letterAndColorTemp'.date("d-m-y").'.csv';
+// $downloadDir=__DIR__."/double-varient/".$fileName;
+// $fileOpen = fopen($downloadDir, "w");
+// foreach ($letterAndColorTemp as $csvData) {
+//     @$parent=$csvData['parent_sku'];
+//     @$child=$csvData['child_sku'];
+//     @$color=$csvData['Letter Color Options'];
+//     @$socond=$csvData['Color Temperature (CCT)'];
+//     @$newtwo[]=array(@$parent,@$child,@$color,@$socond);
+// }
+// foreach($newtwo as $newData){
+//   fputcsv($fileOpen,$newData);
+// }
+// @$newfour[]=array('parent_sku','child_sku','Reflector','Color Temperature (CCT)');
+// $fileName='reflactore-And-ColorTemp'.date("d-m-y").'.csv';
+// $downloadDir=__DIR__."/double-varient/".$fileName;
+// $fileOpen = fopen($downloadDir, "w");
+// foreach ($reflactoreAndColorTemp as $csvData) {
+//     @$parent=$csvData['parent_sku'];
+//     @$child=$csvData['child_sku'];
+//     @$color=$csvData['Reflector'];
+//     @$socond=$csvData['Color Temperature (CCT)'];
+//     @$newfour[]=array(@$parent,@$child,@$color,@$socond);
+// }
+// foreach($newfour as $newData){
+//   fputcsv($fileOpen,$newData);
+// }
+
+@$newfour[]=array('parent_sku','child_sku','Reflector Finish','Color Temperature');
+$fileName='reflactoreFinishAndColorTemp'.date("d-m-y").'.csv';
+$downloadDir=__DIR__."/double-varient/".$fileName;
+$fileOpen = fopen($downloadDir, "w");
+foreach ($reflactoreFinishAndColorTemp as $csvData) {
+  @$parent=$csvData['parent_sku'];
+  @$child=$csvData['child_sku'];
+  @$color=$csvData['Reflector Finish'];
+  @$socond=$csvData['Color Temperature'];
+  @$newfour[]=array(@$parent,@$child,@$color,@$socond);
+}
+foreach($newfour as $newData){
+  fputcsv($fileOpen,$newData);
+}
+
+
+
 
 
 

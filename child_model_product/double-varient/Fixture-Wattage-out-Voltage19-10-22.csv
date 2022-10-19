@@ -1,0 +1,5 @@
+parent_sku,child_sku,"Output Voltage","Fixture Wattage"
+BL-DXR,BL-DXR-65,"6 Volts","50 Watts"
+BL-DXR,BL-DXR-610,"6 Volts","100 Watts"
+BL-DXR,BL-DXR-125,"12 Volts","50 Watts"
+BL-DXR,BL-DXR-1210,"12 Volts","100 Watts"

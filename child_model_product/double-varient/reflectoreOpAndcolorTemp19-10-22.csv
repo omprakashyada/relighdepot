@@ -1,0 +1,26 @@
+parent_sku,child_sku,"Reflector Options","Color Temperature (CCT)"
+LLL-LD4S,LLL-LD4S-27K-WR-WT,"White Reflector - White Trim",2700K
+LLL-LD4S,LLL-LD4S-27K-SR-WT,"Silver Reflector - White Trim",2700K
+LLL-LD4S,LLL-LD4S-27K-BR-WT,"Black Reflector - White Trim",2700K
+LLL-LD4S,LLL-LD4S-27K-BR-BT,"Black Reflector - Black Trim",2700K
+LLL-LD4S,LLL-LD4S-27K-SR-BT,"Silver Reflector - Black Trim",2700K
+LLL-LD4S,LLL-LD4S-30K-WR-WT,"White Reflector - White Trim",3000K
+LLL-LD4S,LLL-LD4S-30K-SR-WT,"Silver Reflector - White Trim",3000K
+LLL-LD4S,LLL-LD4S-30K-BR-WT,"Black Reflector - White Trim",3000K
+LLL-LD4S,LLL-LD4S-30K-BR-BT,"Black Reflector - Black Trim",3000K
+LLL-LD4S,LLL-LD4S-30K-SR-BT,"Silver Reflector - Black Trim",3000K
+LLL-LD4S,LLL-LD4S-35K-WR-WT,"White Reflector - White Trim",3500K
+LLL-LD4S,LLL-LD4S-35K-SR-WT,"Silver Reflector - White Trim",3500K
+LLL-LD4S,LLL-LD4S-35K-BR-WT,"Black Reflector - White Trim",3500K
+LLL-LD4S,LLL-LD4S-35K-BR-BT,"Black Reflector - Black Trim",3500K
+LLL-LD4S,LLL-LD4S-35K-SR-BT,"Silver Reflector - Black Trim",3500K
+LLL-LD4S,LLL-LD4S-40K-WR-WT,"White Reflector - White Trim",4000K
+LLL-LD4S,LLL-LD4S-40K-SR-WT,"Silver Reflector - White Trim",4000K
+LLL-LD4S,LLL-LD4S-40K-BR-WT,"Black Reflector - White Trim",4000K
+LLL-LD4S,LLL-LD4S-40K-BR-BT,"Black Reflector - Black Trim",4000K
+LLL-LD4S,LLL-LD4S-40K-SR-BT,"Silver Reflector - Black Trim",4000K
+LLL-LD4S,LLL-LD4S-50K-WR-WT,"White Reflector - White Trim",5000K
+LLL-LD4S,LLL-LD4S-50K-SR-WT,"Silver Reflector - White Trim",5000K
+LLL-LD4S,LLL-LD4S-50K-BR-WT,"Black Reflector - White Trim",5000K
+LLL-LD4S,LLL-LD4S-50K-BR-BT,"Black Reflector - Black Trim",5000K
+LLL-LD4S,LLL-LD4S-50K-SR-BT,"Silver Reflector - Black Trim",5000K

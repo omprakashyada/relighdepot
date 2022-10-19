@@ -1,0 +1,61 @@
+parent_sku,child_sku,"Finish Options","Trim Ring Finish"
+LT-LEDT-C34,LT-LEDT-C34-HC-WH,"Haze Clear",White
+LT-LEDT-C34,LT-LEDT-C34-HC-BK,"Haze Clear",Black
+LT-LEDT-C34,LT-LEDT-C34-HC-SN,"Haze Clear","Satin Nickel"
+LT-LEDT-C34,LT-LEDT-C34-HC-AN,"Haze Clear","Antique Nickel"
+LT-LEDT-C34,LT-LEDT-C34-HC-AC,"Haze Clear","Antique Copper"
+LT-LEDT-C34,LT-LEDT-C34-HC-M,"Haze Clear",Mocha
+LT-LEDT-C34,LT-LEDT-C34-HC-CP,"Haze Clear",Cappuccino
+LT-LEDT-C34,LT-LEDT-C34-HC-CH,"Haze Clear",Chrome
+LT-LEDT-C34,LT-LEDT-C34-HC-NS,"Haze Clear","Natural Steel"
+LT-LEDT-C34,LT-LEDT-C34-HC-PB,"Haze Clear","Polished Brass"
+LT-LEDT-C34,LT-LEDT-C34-P-WH,Pewter,White
+LT-LEDT-C34,LT-LEDT-C34-P-BK,Pewter,Black
+LT-LEDT-C34,LT-LEDT-C34-P-SN,Pewter,"Satin Nickel"
+LT-LEDT-C34,LT-LEDT-C34-P-AN,Pewter,"Antique Nickel"
+LT-LEDT-C34,LT-LEDT-C34-P-AC,Pewter,"Antique Copper"
+LT-LEDT-C34,LT-LEDT-C34-P-M,Pewter,Mocha
+LT-LEDT-C34,LT-LEDT-C34-P-CP,Pewter,Cappuccino
+LT-LEDT-C34,LT-LEDT-C34-P-CH,Pewter,Chrome
+LT-LEDT-C34,LT-LEDT-C34-P-NS,Pewter,"Natural Steel"
+LT-LEDT-C34,LT-LEDT-C34-P-PB,Pewter,"Polished Brass"
+LT-LEDT-C34,LT-LEDT-C34-C-WH,Champagne,White
+LT-LEDT-C34,LT-LEDT-C34-C-BK,Champagne,Black
+LT-LEDT-C34,LT-LEDT-C34-C-SN,Champagne,"Satin Nickel"
+LT-LEDT-C34,LT-LEDT-C34-C-AN,Champagne,"Antique Nickel"
+LT-LEDT-C34,LT-LEDT-C34-C-AC,Champagne,"Antique Copper"
+LT-LEDT-C34,LT-LEDT-C34-C-M,Champagne,Mocha
+LT-LEDT-C34,LT-LEDT-C34-C-CP,Champagne,Cappuccino
+LT-LEDT-C34,LT-LEDT-C34-C-CH,Champagne,Chrome
+LT-LEDT-C34,LT-LEDT-C34-C-NS,Champagne,"Natural Steel"
+LT-LEDT-C34,LT-LEDT-C34-C-PB,Champagne,"Polished Brass"
+LT-LEDT-C34,LT-LEDT-C34-WHP-WH,"White Painted",White
+LT-LEDT-C34,LT-LEDT-C34-WHP-BK,"White Painted",Black
+LT-LEDT-C34,LT-LEDT-C34-WHP-SN,"White Painted","Satin Nickel"
+LT-LEDT-C34,LT-LEDT-C34-WHP-AN,"White Painted","Antique Nickel"
+LT-LEDT-C34,LT-LEDT-C34-WHP-AC,"White Painted","Antique Copper"
+LT-LEDT-C34,LT-LEDT-C34-WHP-M,"White Painted",Mocha
+LT-LEDT-C34,LT-LEDT-C34-WHP-CP,"White Painted",Cappuccino
+LT-LEDT-C34,LT-LEDT-C34-WHP-CH,"White Painted",Chrome
+LT-LEDT-C34,LT-LEDT-C34-WHP-NS,"White Painted","Natural Steel"
+LT-LEDT-C34,LT-LEDT-C34-WHP-PB,"White Painted","Polished Brass"
+LT-LEDT-C32,LT-LEDT-C32-WH-WH,White,White
+LT-LEDT-C32,LT-LEDT-C32-WH-BK,White,Black
+LT-LEDT-C32,LT-LEDT-C32-WH-SN,White,"Satin Nickel"
+LT-LEDT-C32,LT-LEDT-C32-WH-AN,White,"Antique Nickel"
+LT-LEDT-C32,LT-LEDT-C32-WH-AC,White,"Antique Copper"
+LT-LEDT-C32,LT-LEDT-C32-WH-M,White,Mocha
+LT-LEDT-C32,LT-LEDT-C32-WH-CP,White,Cappuccino
+LT-LEDT-C32,LT-LEDT-C32-WH-CH,White,Chrome
+LT-LEDT-C32,LT-LEDT-C32-WH-NS,White,"Natural Steel"
+LT-LEDT-C32,LT-LEDT-C32-WH-PB,White,"Polished Brass"
+LT-LEDT-C32,LT-LEDT-C32-BK-WH,Black,White
+LT-LEDT-C32,LT-LEDT-C32-BK-BK,Black,Black
+LT-LEDT-C32,LT-LEDT-C32-BK-SN,Black,"Satin Nickel"
+LT-LEDT-C32,LT-LEDT-C32-BK-AN,Black,"Antique Nickel"
+LT-LEDT-C32,LT-LEDT-C32-BK-AC,Black,"Antique Copper"
+LT-LEDT-C32,LT-LEDT-C32-BK-M,Black,Mocha
+LT-LEDT-C32,LT-LEDT-C32-BK-CP,Black,Cappuccino
+LT-LEDT-C32,LT-LEDT-C32-BK-CH,Black,Chrome
+LT-LEDT-C32,LT-LEDT-C32-BK-NS,Black,"Natural Steel"
+LT-LEDT-C32,LT-LEDT-C32-BK-PB,Black,"Polished Brass"
