@@ -97,9 +97,7 @@
                 $productCsvData[]=$product;
             }
         }
-    }
-
-    
+    } 
  @$filtedCsvData[]=array('ProductId','Product Name','Product Code/SKU','Bin Picking Number','Brand Name','Product Description','Price','Cost Price','Retail Price','Sale Price','Fixed Shipping Cost','Free Shipping','Product Warranty','Product Weight','Product Width','Product Height','Product Depth','Allow Purchases', 'Product Visible','Product Availability','Track Inventory','Current Stock Level','Low Stock Level','Category', 'Product Image URL - 1','Product Image URL - 2','Product Image URL - 3','Product Image URL - 4','Product Image URL - 5','Product Image URL - 6','Product Image URL - 7','Product Image URL - 8','Product Image URL - 9','Product Image URL - 10','Product Image URL - 11','Product Image URL - 12','Product Image URL - 13','Page Title','Meta Keywords','Meta Description','Product Condition','Product UPC/EAN','GPS Global Trade Item Number','Product Custom Fields','Minimum Purchase Quantity','Maximum Purchase Quantity','Shipping Groups');
 
  $fileName='new-varient-'.date("d-m-y").'-'.time().'.csv';

@@ -4,8 +4,8 @@ $modelData=[];
 $childSkuData=[];
 $allData=[];
 $withSkuData=[];
-$allProductFile=fopen("C:/xampp/htdocs/relight/csvupload/Product.csv","r");
-$modelProductFile=fopen("C:/xampp/htdocs/relight/modelproduct/model_product.csv","r");
+$allProductFile=fopen("C:/xampp/htdocs/relight/csvupload/product.csv","r");
+$modelProductFile=fopen("C:/xampp/htdocs/relight/modelproduct/model.csv","r");
 while (($productData = fgetcsv($allProductFile)) !== FALSE) {
   $productFileData[] = $productData; 
 }
@@ -60,7 +60,6 @@ foreach($newArrayData as $skuData) {
   }
 }
 
-
 $newArraypushed=[];
 foreach($productCsvData as $arrayData) { 
    $newFetureData=(explode(',[S]',$arrayData['product'][2]));
@@ -96,17 +95,15 @@ foreach($productCsvData as $arrayData) {
     $factoryAndWiring=[];
     $endCapLampType=[];
     $selectRefAndVoltage=[];
-foreach($withSkuData as $WithskuValue) {
-  if(count($WithskuValue) == 6) {
-    echo "<pre>";
-    print_r($WithskuValue);
-   
-  }
-}
-
-
-  
-
-
-
+    $res=[];
+    foreach($withSkuData as $WithskuValue) {
+      if(count($WithskuValue) == 3){
+        for($c=0;$c < count($WithskuValue);$c++) {
+          foreach($WithskuValue as $keys => $valsku){
+            $res[]=$keys;
+          }
+        }
+      }
+    }
+ 
 ?>

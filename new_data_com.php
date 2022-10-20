@@ -24,7 +24,6 @@ while (false !== ($entry = $directory->read())) {
         $latestFilename = $entry;
     }
 }
-
 $newArrayData=[];
 $row=0;
 $productSku='';

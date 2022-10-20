@@ -18,10 +18,10 @@ while (($modelProductData = fgetcsv($modelProductFile)) !== FALSE) {
         $productId=$modelProductData[0];
         if($productId == 0) {
         } else {
-           $modelData[] =array(
-              'child_sku' => $childSku,
-              'parent_sku' =>$parentSku
-            );
+          $modelData[] =array(
+            'child_sku' => $childSku,
+            'parent_sku' =>$parentSku
+          );
         }
     }
      $x++;
@@ -29,12 +29,12 @@ while (($modelProductData = fgetcsv($modelProductFile)) !== FALSE) {
 fclose($modelProductFile);
 $a=0;
 foreach($modelData as $childData) {
-    $arr=array(
-      "data" => explode(",",$childData['child_sku'])
-    );
-    $additional = array($a++ =>$childData['parent_sku']);
-    $arr['data'] = array_merge($arr['data'], $additional);
-    array_push($childSkuData,$arr);
+  $arr=array(
+    "data" => explode(",",$childData['child_sku'])
+  );
+  $additional = array($a++ =>$childData['parent_sku']);
+  $arr['data'] = array_merge($arr['data'], $additional);
+  array_push($childSkuData,$arr);
 }
 $newArrayData=[];
 foreach($childSkuData as $childArrayData) {
@@ -95,37 +95,27 @@ foreach($productCsvData as $arrayData) {
     }
     $allcolorData=[];
     foreach($withSkuData as $WithskuValue) {
-        if(count($WithskuValue) == 3) {
-         if(@$WithskuValue['Color Temperature (CCT)'] || @$WithskuValue['[RB]Color Temperature (CCT)'] || @$WithskuValue['[RT]Color Temperature (CCT)']){
-           array_push($allcolorData,$WithskuValue);
-         } 
-        }
+      if(count($WithskuValue) == 3) {
+        if(@$WithskuValue['Color Temperature (CCT)'] || @$WithskuValue['[RB]Color Temperature (CCT)'] || @$WithskuValue['[RT]Color Temperature (CCT)']){
+          array_push($allcolorData,$WithskuValue);
+        } 
+      }
     }
     
     @$headers[]=array('parent_sku','child_sku','Color Temperature (CCT)','[RT]Color Temperature (CCT)','[RB]Color Temperature (CCT)');
-    // $fileName='All-color-Data'.date("d-m-y").'.csv';
-    // $downloadDir=__DIR__."/single-varient-file/".$fileName;
-    // $fileOpen = fopen($downloadDir, "w");
+    $fileName='All-color-Data'.date("d-m-y").'.csv';
+    $downloadDir=__DIR__."/single-varient-file/".$fileName;
+    $fileOpen = fopen($downloadDir, "w");
     foreach ($allcolorData as $csvData) {
         @$parent=$csvData['parent_sku'];
         @$child=$csvData['child_sku'];
-        $replace = array(',[RT]Emergency Battery Options', '(Default)', '(Standard)', '(recommended)', '/ Frosted Lens','/ Clear Lens','/ Cool White','/ Soft White','/ White','/ Natural DL','/ Clear Cleans','(Warm White)','(Super White)','/ Clear','/ Frosted');
+        $replace = array('[RT]Emergency Battery Options', '(Default)', '(Standard)', '(recommended)', '/ Frosted Lens','/ Clear Lens','/ Cool White','/ Soft White','/ White','/ Natural DL','/ Clear Cleans','(Warm White)','(Super White)','/ Clear','/ Frosted');
         @$colorTemp= str_replace($replace,"",$csvData['Color Temperature (CCT)']);
-            echo "<pre>";
-            print_r($colorTemp);
-            echo "<===================>";
         @$rtColorTemp=$csvData['[RT]Color Temperature (CCT)'];
-        echo "<br>";
-        echo "<pre>";
-        print_r($rtColorTemp);
         @$rbColorDataTemp=$csvData['[RB]Color Temperature (CCT)'];
-        echo "<===================>";
-        echo "<br>";
-        echo "<pre>";
-        print_r($rtColorTemp);
         @$headers[]=array(@$parent,@$child,@$colorTemp,@$rtColorTemp,@$rbColorDataTemp);
     }
-    // foreach($headers as $newData){
-    //   fputcsv($fileOpen,$newData);
-    // }
+    foreach($headers as $newData){
+      fputcsv($fileOpen,$newData);
+    }
 ?> 
