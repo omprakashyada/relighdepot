@@ -1,15 +1,4 @@
  <?php
-session_start();
-include_once (__DIR__.'/authentication.php');
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database='rdevarona_relight_depot_search';
-$conn = new mysqli($servername, $username, $password, $database);
-if ($conn->connect_error) {
-die("Connection failed: " . $conn->connect_error);
-}
-
   $selectData="SELECT * FROM `product_data` LIMIT 200 OFFSET 2800";
   $simple_array = array();
   $model_array = array();
@@ -84,7 +73,43 @@ die("Connection failed: " . $conn->connect_error);
       }
     }
  
-?>
-            
+?>       
 
-          
+<!-- < ?php
+$row=0;
+$csvData=[];
+$handle = fopen(__DIR__.'/csvupload/product_data.csv', "r");
+while (($header = fgetcsv($handle)) !== FALSE) {
+    $num = count($header);
+    if($row ==0 ){
+        $row++; 
+    } else {
+      $itemType=($header[0]);
+      $productId=($header[1]);
+      $curl = curl_init();
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.bigcommerce.com/stores/av4rzyboqm/v3/catalog/products/'.$productId.'/variants',
+        //CURLOPT_URL => 'https://api.bigcommerce.com/stores/c76t6z3pfh/v3/catalog/products/475/variants',
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'GET',
+          CURLOPT_HTTPHEADER => array(
+              'X-Auth-Token: f7j4oo7ck3vju2cpu70qrdqm706gy8m'
+          ),
+      ));
+      $response = curl_exec($curl);
+      curl_close($curl);
+      $responseData=json_decode($response,true);
+      foreach($responseData as $allData) {
+        echo "<pre>";
+        $arrayCount=count($allData);
+        print_r($arrayCount);
+      }
+    }
+  } -->
+
+?>
