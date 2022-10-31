@@ -1,4 +1,4 @@
- <?php
+ <!-- < ?php
   $selectData="SELECT * FROM `product_data` LIMIT 200 OFFSET 2800";
   $simple_array = array();
   $model_array = array();
@@ -72,12 +72,13 @@
         echo "error";
       }
     }
- 
-?>       
+?>        -->
 
-<!-- < ?php
+ <?php
 $row=0;
 $csvData=[];
+$simple_array = array();
+$model_array = array();
 $handle = fopen(__DIR__.'/csvupload/product_data.csv', "r");
 while (($header = fgetcsv($handle)) !== FALSE) {
     $num = count($header);
@@ -86,6 +87,7 @@ while (($header = fgetcsv($handle)) !== FALSE) {
     } else {
       $itemType=($header[0]);
       $productId=($header[1]);
+      $productSku=$header[2];
       $curl = curl_init();
       curl_setopt_array($curl, array(
         CURLOPT_URL => 'https://api.bigcommerce.com/stores/av4rzyboqm/v3/catalog/products/'.$productId.'/variants',
@@ -103,13 +105,43 @@ while (($header = fgetcsv($handle)) !== FALSE) {
       ));
       $response = curl_exec($curl);
       curl_close($curl);
-      $responseData=json_decode($response,true);
+       $responseData=json_decode($response,true);
       foreach($responseData as $allData) {
-        echo "<pre>";
         $arrayCount=count($allData);
-        print_r($arrayCount);
+        if($arrayCount == 1) {
+          foreach($allData as $singleData) {
+           $simple_array[] = array('sku'=>@$singleData['sku'],'product_id'=>@$singleData['product_id']);
+          }
+        } else {
+          $childsku=array();
+          foreach($allData as $data) {
+            $childsku[]=$data['sku'];  
+          }
+          $childSkuData=implode(",",$childsku);
+          $model_array[] = array('sku'=>$productSku,'product_id'=>$productId,'child_sku' => $childSkuData);
+         } 
       }
     }
-  } -->
-
+ }
+  @$headers[]=array('product_id','parent_sku');
+  $fileName='simple_data'.date("d-m-y").'.csv';
+  $downloadDir=__DIR__."/simple_and_model_data/".$fileName;
+  $fileOpen = fopen($downloadDir, "w");
+   foreach($simple_array as $model) {
+   $newArray=(array_filter($model));
+   if(empty($newArray)){
+   }else {
+    echo "<pre>";
+    print_r($newArray);
+    @$product_id=$newArray['product_id'];
+    @$parent_sku=$newArray['sku'];
+    // @$child_sku=$model['child_sku'];
+    @$headers[]=array(@$product_id,@$parent_sku);
+   }
+  }
+foreach($headers as $newData){
+    fputcsv($fileOpen,$newData);
+  }
+  
+  
 ?>

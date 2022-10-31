@@ -5,7 +5,6 @@ $newArrayData=[];
 $allData=[];
 $fileOpen=fopen(__DIR__."/parent-all-data/All-Parent-Data20-10-22-1666263336.csv","r");
 while (($data = fgetcsv($fileOpen)) !== FALSE) {
-  
     if($row== 0) {
         $row++; 
     } else {
@@ -21,10 +20,7 @@ while (($data = fgetcsv($fileOpen)) !== FALSE) {
     }
    
 }
-
 $newArrayDataValue=[];
-
-
 foreach($newArrayData as $customValue) {
     $newArrayDataValue=[];
     foreach($customValue as $value) {
@@ -45,12 +41,11 @@ foreach($newArrayData as $customValue) {
     $newArray = array();
     foreach($result as $key => $value) {
         foreach($value as $key2 => $value2) {
-            $newArray[$key2] =str_replace('"', "",$value2);
+          $newArray[$key2] =str_replace('"', "",$value2);
         }
     }
    array_push($allData,$newArray);
 }
-
 $filtedCsvData[]=array('Product_sku' ,'Light_Source','Fixture_Size','Listings and Ratings','Ballast and Voltage','Color Rendering Index (CRI)','Driver Type','Lumen Output','L70 Expected Life (hours)','L90 Expected Life (hours)','Color Temperature','Total Input Watt','Total Input Watts','Pack Size','Luminaire Efficacy Rating (LER)','Color Temperature (CCT)','Max Ambient Temp','Lamp Count','Lens','Socket','Application','Insulation Rating','__alsobought','Rated Life','Max Ambient');
 
 $fileName='Parent-model-Custome-feilds-'.date("d-m-y").'-'.time().'.csv';

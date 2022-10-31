@@ -5,7 +5,7 @@ $childSkuData=[];
 $allData=[];
 $withSkuData=[];
 $allProductFile=fopen("C:/xampp/htdocs/relight/csvupload/Product.csv","r");
-$modelProductFile=fopen("C:/xampp/htdocs/relight/modelproduct/model_product.csv","r");
+$modelProductFile=fopen("C:/xampp/htdocs/relight/simple_and_model_data/model_data31-10-22.csv","r");
 while (($productData = fgetcsv($allProductFile)) !== FALSE) {
   $productFileData[] = $productData; 
 }
@@ -13,8 +13,8 @@ fclose($allProductFile);
 $x=0;
 while (($modelProductData = fgetcsv($modelProductFile)) !== FALSE) {
     if($x != 0) {
-        $parentSku= $modelProductData[2];
-        $childSku= $modelProductData[3];
+        $parentSku=$modelProductData[1];
+        $childSku= $modelProductData[2];
         $productId=$modelProductData[0];
         if($productId == 0) {
         } else {
@@ -60,7 +60,6 @@ foreach($newArrayData as $skuData) {
   }
 }
 
-
 $newArraypushed=[];
 foreach($productCsvData as $arrayData) { 
    $newFetureData=(explode(',[S]',$arrayData['product'][2]));
@@ -71,8 +70,6 @@ foreach($productCsvData as $arrayData) {
         for($i=0;$i < $countArray; $i++){
           $dataArray[]=(explode('=',$filterData[$i]));
         }
-       
-      
         $result=[];
         for($k=0;$k< count($dataArray);$k++) {
           $result = array_map(function($v){
@@ -103,13 +100,13 @@ foreach($productCsvData as $arrayData) {
 
     $new=[];
     
-    $newUniqueData=(array_unique($withSkuData, SORT_REGULAR));
+    $newUniqueData=(array_unique($withSkuData,SORT_REGULAR));
     $finalData=[];
     foreach($newUniqueData as $parentDataArray) {
-        array_push($finalData,$parentDataArray); 
+      array_push($finalData,$parentDataArray); 
     }
  @$filtedCsvData[]=array('SKU','family_count','family');
- $fileName='All-Parent-Family-Data-'.date("d-m-y").'-'.time().'.csv';
+ $fileName='All-Parent-Family-Data-new'.date("d-m-y").'-'.time().'.csv';
  $downloadDir=__DIR__."/single-varient-file/".$fileName;
  $fileOpen = fopen($downloadDir, "w");
  foreach ($finalData as $csvData) {
