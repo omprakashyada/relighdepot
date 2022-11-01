@@ -93,10 +93,6 @@ foreach($productCsvData as $arrayData) {
         array_push($withSkuData,array_merge($additional,$result_array));
         }   
     }
-    
-    echo "<pre>";
-    print_r($withSkuData);
-  
   $colorTemp=[];
   $finishOptionData=[];
   $lightSource=[];
@@ -217,7 +213,6 @@ foreach($productCsvData as $arrayData) {
 
 // echo "<pre>";
 // print_r($colorTemp);
-
 // @$light[]=array('parent_sku','child_sku','Color');
 // $fileName='color-data'.date("d-m-y").'.csv';
 // $downloadDir=__DIR__."/single-varient-file/".$fileName;
@@ -231,10 +226,6 @@ foreach($productCsvData as $arrayData) {
 // foreach($light as $newData){
 //   fputcsv($fileOpen,$newData);
 // }
-
-
-
-
 
 
 ?> 
