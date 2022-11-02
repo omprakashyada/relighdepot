@@ -5,7 +5,7 @@ $childSkuData=[];
 $allData=[];
 $withSkuData=[];
 $allProductFile=fopen("C:/xampp/htdocs/relight/csvupload/Product.csv","r");
-$modelProductFile=fopen("C:/xampp/htdocs/relight/simple_and_model_data/model_page-201-11-22.csv","r");
+$modelProductFile=fopen("C:/xampp/htdocs/relight/simple_and_model_data/model_page-10-02-11-22.csv","r");
 //$modelProductFile=fopen("C:/xampp/htdocs/relight/modelproduct/model.csv","r");
 while (($productData = fgetcsv($allProductFile)) !== FALSE) {
   $productFileData[] = $productData; 
@@ -71,8 +71,8 @@ foreach($newArrayData as $skuData) {
 $input = array_map("unserialize", array_unique(array_map("serialize", $productCsvData)));
 
 @$filtedCsvData[]=array('parent_sku','Child_sku','ProductId','Product Name','Bin Picking Number','Brand Name','Product Description','Price','Cost Price','Retail Price','Sale Price','Fixed Shipping Cost','Free Shipping','Product Warranty','Product Weight','Product Width','Product Height','Product Depth','Allow Purchases', 'Product Visible','Product Availability','Track Inventory','Current Stock Level','Low Stock Level','Category', 'Product Image URL - 1','Product Image URL - 2','Product Image URL - 3','Product Image URL - 4','Product Image URL - 5','Product Image URL - 6','Product Image URL - 7','Product Image URL - 8','Product Image URL - 9','Product Image URL - 10','Product Image URL - 11','Product Image URL - 12','Product Image URL - 13','Page Title','Meta Keywords','Meta Description','Product Condition','Product UPC/EAN','GPS Global Trade Item Number','Product Custom Fields','Minimum Purchase Quantity','Maximum Purchase Quantity','Shipping Groups');
-$fileName='New-Parent-And-Child-Data-page-two'.date("d-m-y").'-'.time().'.csv';
-$downloadDir=__DIR__."/single-varient-file/".$fileName;
+$fileName='New-Parent-And-Child-Data-page-tenth'.date("d-m-y").'-'.time().'.csv';
+$downloadDir=__DIR__."/model-child-pages-Data/".$fileName;
 $fileOpen = fopen($downloadDir, "w");
 foreach($productCsvData as $csvData){
     $parent_sku=$csvData['parent_sku'];

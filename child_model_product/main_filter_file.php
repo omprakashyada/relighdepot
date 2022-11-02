@@ -20,6 +20,7 @@ fclose($mainFile);
 $newArray=[];
 $testArray=[];
 $varientArray=[];
+
 foreach($mainArray as $varientData) {
     $varientArray[]=($varientData['variant']);
     foreach($varientData['variant'] as $var) {
@@ -31,5 +32,7 @@ foreach($mainArray as $varientData) {
     }
 }
 
+echo "<pre>";
+print_r($varientArray);
 
 ?>

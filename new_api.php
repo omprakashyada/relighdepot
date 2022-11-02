@@ -75,24 +75,24 @@
 ?>        -->
 
  <?php
-$row=0;
-$csvData=[];
-$simple_array = array();
-$model_array = array();
-$handle = fopen(__DIR__.'/csvupload/product_data.csv', "r");
-while (($header = fgetcsv($handle)) !== FALSE) {
-    $num = count($header);
-    if($row ==0 ){
-        $row++; 
-    } else {
-      $itemType=($header[0]);
-      $productId=($header[1]);
-      $productSku=$header[2];
+// $row=0;
+// $csvData=[];
+// $simple_array = array();
+// $model_array = array();
+// $handle = fopen(__DIR__.'/csvupload/new_model_product.csv', "r");
+// while (($header = fgetcsv($handle)) !== FALSE) {
+//     $num = count($header);
+//     if($row ==0 ){
+//         $row++; 
+//     } else {
+//       $itemType=($header[0]);
+//       $productId=($header[1]);
+//       $productSku=$header[2];
       $curl = curl_init();
       curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.bigcommerce.com/stores/av4rzyboqm/v3/catalog/products/'.$productId.'/variants?page=3',
+        //CURLOPT_URL => 'https://api.bigcommerce.com/stores/av4rzyboqm/v3/catalog/products/'.$productId.'/variants?page=10',
         // CURLOPT_URL => 'https://api.bigcommerce.com/stores/av4rzyboqm/v3/catalog/products/'.$productId.'/variants',
-        //CURLOPT_URL => 'https://api.bigcommerce.com/stores/c76t6z3pfh/v3/catalog/products/475/variants',
+        CURLOPT_URL => 'https://api.bigcommerce.com/stores/av4rzyboqm/v3/catalog/products/474',
           CURLOPT_RETURNTRANSFER => true,
           CURLOPT_ENCODING => '',
           CURLOPT_MAXREDIRS => 10,
@@ -108,22 +108,24 @@ while (($header = fgetcsv($handle)) !== FALSE) {
       $response = curl_exec($curl);
       curl_close($curl);
        $responseData=json_decode($response,true);
-      foreach($responseData as $allData) {
-        @$arrayCount=count($allData);
-        if(@$arrayCount==1) {
-          // $simple_array[] = array('sku'=>$singleData['sku'],'product_id'=>@$singleData['product_id']);
+       echo "<pre>";
+    print_r($responseData);
+//       foreach($responseData as $allData) {
+//         @$arrayCount=count($allData);
+//         if(@$arrayCount==1) {
+//           // $simple_array[] = array('sku'=>$singleData['sku'],'product_id'=>@$singleData['product_id']);
           
-        } else {
-          $childsku=array();
-          foreach($allData as $data) {
-            $childsku[]=$data['sku'];  
-          }
-            $childSkuData=implode(",",$childsku);
-            $model_array[] = array('sku'=>$productSku,'product_id'=>$productId,'child_sku' => $childSkuData);
-         } 
-      }
-    }
- }
+//         } else {
+//           $childsku=array();
+//           foreach($allData as $data) {
+//             $childsku[]=$data['sku'];  
+//           }
+//             $childSkuData=implode(",",$childsku);
+//             $model_array[] = array('sku'=>$productSku,'product_id'=>$productId,'child_sku' => $childSkuData);
+//          } 
+//       }
+//     }
+//  }
 //  echo "<pre>";
 //  print_r($model_array);
  //first page model data 
@@ -146,30 +148,31 @@ while (($header = fgetcsv($handle)) !== FALSE) {
   // }
    
   //second page model data 
-  $pageTwoArray=[];
-  foreach($model_array as $pageTwodata){
-    if($pageTwodata['child_sku'] ==''){
-    } else {
-      $pageTwoArray[]=$pageTwodata;
-    }
-  }
+  // $pageTwoArray=[];
+  // foreach($model_array as $pageTwodata){
+  //   if($pageTwodata['child_sku'] ==''){
+  //   } else {
+  //     $pageTwoArray[]=$pageTwodata;
+  //   }
+  // }
   
- @$headers[]=array('product_id','parent_sku','child_sku');
-  $fileName='model_page-3'.date("d-m-y").'.csv';
-  $downloadDir=__DIR__."/simple_and_model_data/".$fileName;
-  $fileOpen = fopen($downloadDir, "w");
-   foreach($pageTwoArray as $model) {
-   $newArray=(array_filter($model));
-   if(empty($newArray)){
-   }else {
-    @$product_id=$newArray['product_id'];
-    @$parent_sku=$newArray['sku'];
-    @$child_sku=$model['child_sku'];
-    @$headers[]=array(@$product_id,@$parent_sku,@$child_sku);
-   }
-  } 
-  foreach($headers as $newData){
-    fputcsv($fileOpen,$newData);
-  }
+  
+//  @$headers[]=array('product_id','parent_sku','child_sku');
+//   $fileName='model_page-10-'.date("d-m-y").'.csv';
+//   $downloadDir=__DIR__."/simple_and_model_data/".$fileName;
+//   $fileOpen = fopen($downloadDir, "w");
+//    foreach($pageTwoArray as $model) {
+//    $newArray=(array_filter($model));
+//    if(empty($newArray)){
+//    }else {
+//     @$product_id=$newArray['product_id'];
+//     @$parent_sku=$newArray['sku'];
+//     @$child_sku=$model['child_sku'];
+//     @$headers[]=array(@$product_id,@$parent_sku,@$child_sku);
+//    }
+//   } 
+//   foreach($headers as $newData){
+//     fputcsv($fileOpen,$newData);
+//   }
 
 ?>
