@@ -33,7 +33,7 @@ foreach($modelData as $childData) {
       "data" => explode(",",$childData['child_sku'])
     );
     $additional = array($a++ =>$childData['parent_sku']);
-    $arr['data'] = array_merge($arr['data'], $additional);
+    $arr['data']=array_merge($arr['data'], $additional);
     array_push($childSkuData,$arr);
 }
 $newArrayData=[];
