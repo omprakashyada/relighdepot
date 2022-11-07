@@ -12,8 +12,8 @@ while (($header = fgetcsv($handle)) !== FALSE) {
       $itemType=($header[0]);
       $productId=($header[1]);
       $productSku=$header[2];
- $curl = curl_init();
- curl_setopt_array($curl, array(
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
    //CURLOPT_URL => 'https://api.bigcommerce.com/stores/av4rzyboqm/v3/catalog/products/'.$productId.'/variants?page=10',
    // CURLOPT_URL => 'https://api.bigcommerce.com/stores/av4rzyboqm/v3/catalog/products/'.$productId.'/variants',
     CURLOPT_URL => 'https://api.bigcommerce.com/stores/av4rzyboqm/v3/catalog/products/'.$productId,
@@ -90,7 +90,7 @@ foreach($simple_array as $csvData){
     @$order_quntity_max=$csvData['order_quantity_maximum']; 
     @$page_title=$csvData['page_title'];
     @$base_varient=$csvData['base_variant_id'];
-    $header[]=array(@$id, @$name, @$type, $sku,@$description,@$weight, @$width,@$depth, @$height, @$price,@$cost_price,  @$retail_price, @$sale_price,@$map_price, @$tax_id, @$product_tax,  @$calculated_price, @$brand_id,  @$option_set_id,@$option_display, @$inventry_level, @$inventry_warning_level, @$inventry_tracking, @$review_rating_sum, @$review_count, @$Total_sold,@$fixed_cost, @$is_free_sipping, @$is_visible,@$isFeatured, @$warrenty, @$binpcingNumber,@$upc,@$mpn, @$gtin,@$searchKeyword, @$avilityKeyword,@$avi_description, @$sort_order, @$condition,   @$condition_shown,@$order_quntity_min, @$order_quntity_max,  @$page_title,@$base_varient);
+    $header[]=array(@$id, @$name, @$type, $sku,@$description,@$weight, @$width,@$depth, @$height, @$price,@$cost_price,  @$retail_price, @$sale_price,@$map_price, @$tax_id, @$product_tax,  @$calculated_price, @$brand_id,  @$option_set_id,@$option_display, @$inventry_level, @$inventry_warning_level, @$inventry_tracking, @$review_rating_sum, @$review_count, @$Total_sold,@$fixed_cost, @$is_free_sipping, @$is_visible,@$isFeatured, @$warrenty, @$binpcingNumber,@$upc,@$mpn, @$gtin,@$searchKeyword, @$avilityKeyword,@$avi_description, @$sort_order,@$condition,@$condition_shown,@$order_quntity_min, @$order_quntity_max,  @$page_title,@$base_varient);
 }
 foreach($header as $newData){
     fputcsv($fileOpen,$newData);
@@ -99,3 +99,39 @@ foreach($header as $newData){
 
             
                             
+
+   
+                      
+              
+  
+        
+               
+    
+                      
+ 
+    
+            
+                
+           
+          
+                                    
+        
+      
+ 
+                      
+ 
+                                        
+           
+
+    
+                             
+           
+                                    
+        
+            
+          
+
+ 
+                      
+ 
+                                        

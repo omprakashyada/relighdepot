@@ -5,7 +5,7 @@
     $model_array = array();
     $varientData=[];
     // model_product_id-2-03-11-22
-    $handle = fopen(__DIR__.'/files/model_product_id-5-03-11-22.csv', "r");
+    $handle = fopen(__DIR__.'/model_data/all_model_id.csv', "r");
     while (($header = fgetcsv($handle,100,",")) !== FALSE) {
         if($row ==0 ){
             $row++; 
@@ -14,7 +14,7 @@
             $parent_sku=$header[1];
             $curl = curl_init();
             curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://api.bigcommerce.com/stores/av4rzyboqm/v3/catalog/products/'.$product_id.'/variants',
+            CURLOPT_URL => 'https://api.bigcommerce.com/stores/av4rzyboqm/v3/catalog/products/'.$product_id.'/variants?page=2',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -49,7 +49,7 @@
     $optionData=[];
     $optionArray=[];
     $allData=[];
-    foreach($varientData as $newData) {
+    foreach($varientData as $newData){
         foreach($newData['option_values'] as $opValue){
             $allData[]=array(
                 'product_id' => $newData['product_id'],
@@ -65,125 +65,134 @@
             );
         }
     }
-    
-//     $headers[]=array('product_id','parent_sku','sku','price','calculated_price','sale_price','retail_price','map_price','cost_price','Finish Options', 'Wattage & Lumen Options',
-//     'Color Temperature (CCT)', 'Wattage Options', 'Fixture Options','Length/Wattage Options','Length / Wattage Options', 'Length & Wattage Options','Voltage Options','Mounting Options','Beam Angle Options', 'Size & Wattage Options','Source/Wattage Options','Wattage & Voltage Options', 'Size and Wattage Options','Wattage and Voltage Options', 'Housing Sizes Option','Housing Sizes Options','Fixture Size',  'Stem Mount Options:','Ceiling Canopy Options','Wire Guard Options:','Stem Mount Options','Size Options', 'Photo Cell Options', 'Lens Options', 'Rod Set Options', 'Spool Length', 'Distribution Options','Lamp Options', 'Size & Lamps Options','Wattage & Lens Options','Trim Color Options', 'Pendant Mounting Kit', 'Trim Shape Options','Length Options','Lumen Package Options', 'Lumen Package & Lens Type Options','Watts & Bollard Options','Sensor Options', 'Frame Options','Trimplate Options', 'Wattage & VA Rating','Wattage & Battery Type', 'Soft Connector Options','Cable Options', 'No. of Heads Options','Housing Color Options',
-//   );
+    $headers[]=array( 'product_id','parent_sku','sku','price','calculated_price','sale_price','retail_price','map_price','cost_price','Wattage Options','Color Temperature (CCT)','End Cap Finish Options','Wattage & Optic Options','Voltage Options','Lens Options', 'Driver Option','Finish Options', 'Height Options','Wattage & Optics Options','End Cap Options', 'Wattage  Options','Wattage & Globe Options','Pendant Mounting Kit','Wattage & Lumen Options', 'Beam Angle Options','Fixture Options', 'Pendant Mount Kit', 'Fixture Size', 'Stem Mount Options:', 'Ceiling Canopy Options', 'Wire Guard Options:', 'Stem Mount Options','Mounting Options', 'Voltage', 'Optics Options', 'Distribution Options','Connector Type Options', 'Trim Type Options', 'Photocell Options','Wattage & Optics/Beams Options','Wattage Optics/Beams Options', 'Factory Installed Lamps','Mounting Kit',  'Occupancy Sensor', 'Wiring Options','Size & Wattage Options', 'Control Options',);
 
-    $a=[];
-    // $fileName='varient-data-4-'.date("d-m-y").'.csv';
-    // $downloadDir=__DIR__."/varientData/".$fileName;
-    // $fileOpen = fopen($downloadDir, "w");
+     $a=[];
+        $fileName='varient-data-2-'.date("d-m-y").'.csv';
+        $downloadDir=__DIR__."/varientData/page-2/".$fileName;
+        $fileOpen = fopen($downloadDir, "w");
         foreach($allData as $csvData){
-        //     echo "<pre>";
-         $a[]=(array_keys($csvData));
-//         @$id=$csvData['product_id'];
-//         @$parent_sku=@$csvData['parent_sku'];
-//         @$sku=$csvData['sku'];
-//         @$price=$csvData['price'];
-//         @$calculated=$csvData['calculated_price'];   
-//         @$sale_price=$csvData['sale_price']; 
-//         @$retail_price=$csvData['retail_price'];
-//         @$map_price=$csvData['map_price'];   
-//         @$cost_price=$csvData['cost_price']; 
+            echo "<pre>";
+            @$a=$csvData['product_id'];
+            @$b=$csvData['parent_sku'];
+            @$c=$csvData['sku'];
+            @$d=$csvData['price'];
+            @$e=$csvData['calculated_price'];
+            @$f=$csvData['sale_price'];
+            @$g=$csvData['retail_price'];
+            @$h=$csvData['map_price'];
+            @$i=$csvData['cost_price'];
+            @$j=$csvData['Wattage Options'];
+            @$k=$csvData['Color Temperature (CCT)'];
+            @$l=$csvData['End Cap Finish Options'];
+            @$m=$csvData['Wattage & Optic Options'];
+            @$n=$csvData['Voltage Options'];
+            @$o=$csvData['Lens Options'];
+            @$p=$csvData['Driver Option'];
+            @$q=$csvData['Finish Options'];
+            @$r=$csvData['Height Options'];
+            @$s=$csvData['Wattage & Optics Options'];
+            @$t=$csvData['End Cap Options'];
+            @$u=$csvData['Wattage  Options'];
+            @$v=$csvData['Wattage & Globe Options'];
+            @$w=$csvData['Pendant Mounting Kit'];
+            @$x=$csvData['Wattage & Lumen Options'];
+            @$y=$csvData['Beam Angle Options'];
+            @$z=$csvData['Fixture Options'];
+            @$aa=$csvData['Pendant Mount Kit'];
+            @$bb=$csvData['Fixture Size'];
+            @$cc=$csvData['Stem Mount Options:'];
+            @$dd=$csvData['Ceiling Canopy Options'];
+            @$ee=$csvData['Wire Guard Options:'];
+            @$ff=$csvData['Stem Mount Options'];
+            @$gg=$csvData['Mounting Options'];
+            @$hh=$csvData['Voltage'];
+            @$ii=$csvData['Optics Options'];
+            @$jj=$csvData['Distribution Options'];
+            @$kk=$csvData['Connector Type Options'];
+            @$uu=$csvData['Trim Type Options'];
+            @$ll=$csvData['Photocell Options'];
+            @$mm=$csvData['Wattage & Optics/Beams Options'];
+            @$nn=$csvData['Wattage Optics/Beams Options'];
+            @$oo=$csvData['Factory Installed Lamps'];
+            @$pp=$csvData['Mounting Kit'];
+            @$qq=$csvData['Occupancy Sensor'];
+            @$rr=$csvData['Wiring Options'];
+            @$ss=$csvData['Size & Wattage Options'];
+            @$tt=$csvData['Control Options'];
+        // $a[]=(array_keys($csvData));
+        @$headers[]=array(@$a, @$b,@$c, @$d, @$e,   @$f, @$g, @$h, @$i, @$j,  @$k, @$l, @$m,  @$n,  @$o,@$p, @$q, @$r, @$s,  @$t, @$u, @$v, @$w, @$x, @$y, @$z,@$aa,@$bb, @$cc, @$dd, @$ee, @$ff, @$gg, @$hh, @$ii, @$jj,@$kk, @$uu, @$ll, @$mm, @$nn,@$oo,@$pp, @$qq,  @$rr, @$ss,@$tt,);
+       
+    }
+    foreach($headers as $newData){
+        fputcsv($fileOpen,$newData);
+    }
 
-//     @$finish_op=@$csvData['Finish Options']; 
-//     @$wattelumen=@$csvData['Wattage & Lumen Options'];
-//     @$cct=@$csvData['Color Temperature (CCT)'];
-//     @$wto=@$csvData['Wattage Options'];
-//     @$fxtrop=@$csvData['Fixture Options'];
-//     @$lenswat=@$csvData['Length/Wattage Options'];
-//     @$lengthwatop=@$csvData['Length / Wattage Options'];
-//     @$lenandwath=@$csvData['Length & Wattage Options'];
-//     @$voltageopt=@$csvData['Voltage Options'];
-//     @$mountingop=@$csvData['Mounting Options'];
-//     @$beam=@$csvData['Beam Angle Options'];
-//     @$sizewatt=@$csvData['Size & Wattage Options'];
-//     @$sourcewatt=@$csvData['Source/Wattage Options'];
-//     @$wattegandvolt=@$csvData['Wattage & Voltage Options'];
-//     @$sizeandwattege=@$csvData['Size and Wattage Options'];
-//     @$wattegeandvoltagetwo=@$csvData['Wattage and Voltage Options'];
-//     @$housingsizeoption=@$csvData['Housing Sizes Option'];
-//     @$housesizeoptwo=@$csvData['Housing Sizes Options'];
-//     @$fixturesize=@$csvData['Fixture Size'];
-//     @$stemmount=@$csvData['Stem Mount Options:'];
-//     @$ceiling=@$csvData['Ceiling Canopy Options'];
-//     @$wiregop=@$csvData['Wire Guard Options:'];
-//     @$stemmountoptwo=@$csvData['Stem Mount Options'];
-//     @$sizeop=@$csvData['Size Options'];
-//     @$photocell=@$csvData['Photo Cell Options'];
-//     @$lenseoption=@$csvData['Lens Options'];
-//     @$rodset=@$csvData['Rod Set Options'];
-//     @$spoollength=@$csvData['Spool Length'];
-//     @$distribution=@$csvData['Distribution Options'];
-//     @$lampp=@$csvData['Lamp Options'];
-//     @$sizeandlampp=@$csvData['Size & Lamps Options'];
-//     @$watandlense=@$csvData['Wattage & Lens Options'];
-//     @$trimcolor=@$csvData['Trim Color Options'];
-//     @$pendantmount=@$csvData['Pendant Mounting Kit'];
-//     @$trimshap=@$csvData['Trim Shape Options'];
-//     @$length=@$csvData['Length Options'];
-//     @$lumenpack=@$csvData['Lumen Package Options'];
-//     @$lemuneandlense=@$csvData['Lumen Package & Lens Type Options'];
-//     @$wattsbollard=@$csvData['Watts & Bollard Options'];
-//     @$sensor=@$csvData['Sensor Options'];
-//     @$framoption=@$csvData['Frame Options'];
-//     @$trimplateop=@$csvData['Trimplate Options'];
-//     @$wattandvarat=@$csvData['Wattage & VA Rating'];
-//     @$watteandbaterry=@$csvData['Wattage & Battery Type'];
-//     @$softconnect=@$csvData['Soft Connector Options'];
-//     @$cableoption=@$csvData['Cable Options'];
-//     @$noofhead=@$csvData['No. of Heads Options'];
-//     @$housing=@$csvData['Housing Color Options'];
-
-// $headers[]=array(@$id, @$parent_sku, @$sku, @$price, @$calculated,@$sale_price,@$retail_price, @$map_price, @$cost_price,@$finish_op, @$wattelumen, @$cct, @$wto,  @$fxtrop,  @$lenswat, @$lengthwatop, @$lenandwath, @$voltageopt,  @$mountingop, @$beam,  @$sizewatt,  @$sourcewatt, @$wattegandvolt, @$sizeandwattege, @$wattegeandvoltagetwo, @$housingsizeoption, @$housesizeoptwo,   @$fixturesize, @$stemmount, @$ceiling,@$wiregop,@$stemmountoptwo, @$sizeop,  @$photocell,  @$lenseoption,  @$rodset,  @$spoollength, @$distribution, @$lampp, @$sizeandlampp,  @$watandlense, @$trimcolor, @$pendantmount, @$trimshap, @$length,  @$lumenpack, @$lemuneandlense, @$wattsbollard, @$sensor,  @$framoption, @$trimplateop, @$wattandvarat, @$watteandbaterry, @$softconnect, @$cableoption,  @$noofhead, @$housing,);
- }
- echo "<pre>";
- print_r(array_unique($a,SORT_REGULAR));
-//   foreach($headers as $newData){
-//       fputcsv($fileOpen,$newData);
-//   }
+//  echo "<pre>";
+//  print_r(array_unique($a,SORT_REGULAR));
+ 
   
  
 ?> 
+  
+                
+                               
+ 
+    
+ 
+                 
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                                    
+            
+    
+          
+   
+ 
+  
+               
+  
                       
-            @$housecolor=@$csvdata['Housing Color Options'];
-            @$fixtureOption=@$csvdata['Fixture Options'];
-            @$letterColor=@$csvdata['Letter Color Options'];
-            @$=@$csvdata['Finish Options'];
-            @$=@$csvdata['No. of Faces Options'];
-            @$=@$csvdata['Battery Options'];
-            @$=@$csvdata['Face Panel Options'];
-            @$=@$csvdata['Pendant Mounting Kit
-            @$=@$csvdata['Wattage Options'];
-            @$=@$csvdata['Color Temperature (CCT)'];
-            @$=@$csvdata['Size & Wattage Options'];
-            @$=@$csvdata['Wattage & Lumen Options'];
-            @$=@$csvdata['Voltage Options'];
-            @$=@$csvdata['Height Options'];
-            @$=@$csvdata['Mounting Options'];
-            @$=@$csvdata['Wattage & Optics Options'];
-            @$=@$csvdata['Lens Options'];
-            @$=@$csvdata['Wattage & Lens Options'];
-            @$=@$csvdata['Optics Options'];
-            @$=@$csvdata['Voltage'];
-            @$=@$csvdata['Sensor Options'];
-            @$=@$csvdata['Optic Options'];
-            @$=@$csvdata['Size Options'];
-            @$=@$csvdata['Voltage Optipns'];
-            @$=@$csvdata['Dimming Options'];
-            @$=@$csvdata['Beam Angle Options'];
-            @$=@$csvdata['Lamp Options'];
-            @$=@$csvdata['Photocontrol Options'];
-            @$=@$csvdata['Control Options'];
-            @$=@$csvdata['Distribution Options'];
-            @$=@$csvdata['Length & Wattage Options'];
+          
+                      
   
         
-            
+               
     
                       
  
+    
+            
+                
+           
+          
+                                    
+        
+      
+ 
+                      
+ 
+                                        
+           
+
     
                              
            
@@ -192,6 +201,186 @@
             
           
 
+ 
+                      
+ 
+                                               
+                      
+  
+        
+               
+    
+                      
+ 
+    
+            
+                
+           
+          
+                                    
+        
+      
+ 
+                      
+ 
+                                        
+           
+
+    
+                             
+           
+                                    
+        
+            
+          
+
+ 
+                      
+ 
+                                        
+      
+ 
+                      
+ 
+                                        
+           
+
+    
+                             
+           
+                                    
+        
+            
+          
+
+ 
+                      
+ 
+                                               
+                      
+  
+        
+               
+    
+                      
+ 
+    
+            
+                
+           
+          
+                                    
+        
+      
+ 
+                      
+ 
+                                        
+           
+
+    
+                             
+           
+                                    
+        
+            
+          
+
+ 
+                      
+ 
+                                        
+                
+           
+          
+                                    
+        
+      
+ 
+                      
+ 
+                                        
+           
+
+    
+                             
+           
+                                    
+        
+            
+          
+
+ 
+                      
+ 
+                                               
+                      
+  
+        
+               
+    
+                      
+ 
+    
+            
+                
+           
+          
+                                    
+        
+      
+ 
+                      
+ 
+                                        
+           
+
+    
+                             
+           
+                                    
+        
+            
+          
+
+ 
+                      
+ 
+                                        
+      
+ 
+                      
+ 
+                                        
+           
+
+    
+                             
+           
+                                    
+        
+            
+          
+
+ 
+                      
+ 
+                                               
+                      
+  
+        
+               
+    
+                      
+ 
+    
+            
+                
+           
+          
+                                    
+        
+      
  
                       
  

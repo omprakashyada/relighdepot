@@ -3,7 +3,7 @@ $row=0;
 $csvData=[];
 $simple_array = array();
 $model_array = array();
-$handle = fopen(__DIR__.'/files/model_product_id-11-03-11-22.csv', "r");
+$handle = fopen(__DIR__.'/files/product_id-8-two.csv', "r");
 while (($header = fgetcsv($handle)) !== FALSE) {
     $num = count($header);
     if($row ==0 ){
@@ -50,7 +50,7 @@ while (($header = fgetcsv($handle)) !== FALSE) {
     }
 
     $header[]=array('id','name',  'type','sku', 'description','weight', 'width','depth', 'height','price','cost_price', 'retail_price','sale_price','map_price','tax_class_id','product_tax_code', 'calculated_price', 'brand_id','option_set_id', 'option_set_display', 'inventory_level',  'inventory_warning_level', 'inventory_tracking','reviews_rating_sum','reviews_count','total_sold','fixed_cost_shipping_price','is_free_shipping','is_visible', 'is_featured','warranty', 'bin_picking_number',  'upc', 'mpn', 'gtin','search_keywords','availability', 'availability_description','sort_order', 'condition','is_condition_shown','order_quantity_minimum','order_quantity_maximum',  'page_title',  'base_variant_id',);
-    $fileName='model-data-11-'.date("d-m-y").'.csv';
+    $fileName='model-data-8-two-'.date("d-m-y").'.csv';
     $downloadDir=__DIR__."/model_data/".$fileName;
     $fileOpen = fopen($downloadDir, "w");
   foreach($model_array as $csvData){
